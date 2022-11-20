@@ -13,6 +13,8 @@ connectToDB();
 // Import Middleware
 const errorMiddleware = require("./src/middleware/error.middleware");
 
+// Importing Routes
+const auth = require("./src/routes/auth.routes")
 // Add Node Features
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -24,6 +26,8 @@ app.use(rateLimiter);
 // Serve static files
 app.use("/uploads/", express.static(path.join(__dirname, "/uploads")));
 
+//Using Routes 
+app.use("/api/auth",auth)
 // Add Middleware
 app.use(errorMiddleware);
 
