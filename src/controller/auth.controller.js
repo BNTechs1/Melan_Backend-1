@@ -70,13 +70,12 @@ const login = asyncHandler(async(req,res)=>{
           expiresIn:"1h"
         }
       )
-      bcrypt.hash(jwtToken, 10).then((jwt) => {
       res.status(200).json({
-        accessToken: jwt,
+        accessToken: jwtToken,
         expiresIn: 3600,
         userId: getUser.userId,
       })
-    })
+    
     }
     
   })

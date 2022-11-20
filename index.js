@@ -15,6 +15,7 @@ const errorMiddleware = require("./src/middleware/error.middleware");
 
 // Importing Routes
 const auth = require("./src/routes/auth.routes")
+const hero = require("./src/routes/hero.routes")
 // Add Node Features
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -28,6 +29,7 @@ app.use("/uploads/", express.static(path.join(__dirname, "/uploads")));
 
 //Using Routes 
 app.use("/api/auth",auth)
+app.use("/api/hero", hero)
 // Add Middleware
 app.use(errorMiddleware);
 
