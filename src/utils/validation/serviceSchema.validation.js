@@ -3,8 +3,9 @@ const serviceSchema = {
     title: {
         custom: {
             options: value => {
+                console.log(value)
                 return ServiceModel.find({
-                    name: value
+                    title: value
                 }).then(service => {
                     if (service.length > 0) {
                         return Promise.reject('Hero already Exist')
