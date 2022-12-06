@@ -19,6 +19,8 @@ const hero = require("./src/routes/hero.routes")
 const service = require("./src/routes/service.routes")
 const portfolio = require("./src/routes/portfolio.routes")
 const partner = require("./src/routes/partner.routes")
+const about = require("./src/routes/about.routes")
+
 
 
 // Add Node Features
@@ -38,6 +40,8 @@ app.use("/api/hero", hero)
 app.use("/api/service", service)
 app.use("/api/portfolio", portfolio)
 app.use("/api/partner", partner)
+app.use("/api/about", about)
+
 
 
 // Add Middleware
