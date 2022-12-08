@@ -6,7 +6,7 @@ const {checkSchema} = require('express-validator');
 const authorize = require("../middleware/auth.middleware")
 router.post("/register", checkSchema(authSchema.authSchema),authController.register);
 router.post("/login", authController.login);
-router.post("/checkauth", authorize);
+router.get("/checkauth", authorize);
 
 router.get("/user-profile/:id", authorize, authController.userProfile);
 
