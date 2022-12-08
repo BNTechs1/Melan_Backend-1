@@ -1,18 +1,18 @@
 const ServiceModel = require("../../models/service.model");
 const serviceSchema = {
     title: {
-        custom: {
-            options: value => {
-                console.log(value)
-                return ServiceModel.find({
-                    title: value
-                }).then(service => {
-                    if (service.length > 0) {
-                        return Promise.reject('Hero already Exist')
-                    }
-                })
-            }
-        },
+        // custom: {
+        //     options: value => {
+        //         console.log(value)
+        //         return ServiceModel.find({
+        //             title: value
+        //         }).then(service => {
+        //             if (service.length > 0) {
+        //                 return Promise.reject('Hero already Exist')
+        //             }
+        //         })
+        //     }
+        // },
         notEmpty: true,
         errorMessage: "Title is required"
     },
