@@ -39,7 +39,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PartnerSchema
       // fs.unLinkSync(path)
     }
     const partnerId = uuidv4()
-    const Partner = new HeroModel({
+    const Partner = new PartnerModel({
       partnerd: partnerId,
       title:req.body.title,
       files:urls
