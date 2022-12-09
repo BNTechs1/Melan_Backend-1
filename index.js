@@ -20,6 +20,7 @@ const service = require("./src/routes/service.routes")
 const portfolio = require("./src/routes/portfolio.routes")
 const partner = require("./src/routes/partner.routes")
 const about = require("./src/routes/about.routes")
+const generator = require("./src/routes/generator.routes")
 
 
 
@@ -41,6 +42,9 @@ app.use("/api/service", service)
 app.use("/api/portfolio", portfolio)
 app.use("/api/partner", partner)
 app.use("/api/about", about)
+app.use("/api/generator", generator)
+
+
 
 
 
