@@ -7,7 +7,7 @@ const auth = require("../middleware/auth.middleware")
 const multer = require('multer')
 const DIR = './public/'
 const cloudinary = require("../config/cloudinary")
-const AtsModel = require("../models/Ats.model");
+const AtsModel = require("../models/ats.model");
 const {v4 : uuidv4} = require('uuid')
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
@@ -73,7 +73,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(AtsScheama.at
     })
 });
 
-router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheama.AtsSchema), async(req,res)=>{
+router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheama.atsSchema), async(req,res)=>{
   const uploader = async(path) => await cloudinary.uploads(path)
   const files = req.files;
     const urls = []
