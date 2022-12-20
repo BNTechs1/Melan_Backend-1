@@ -112,7 +112,6 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
       }
     })
   })
-
 router.get("/get", AtsController.getAtss);
 router.get("/show/:id", AtsController.getAts);
 router.delete("/delete/:id", AtsController.deleteAts); 

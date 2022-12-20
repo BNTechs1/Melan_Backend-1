@@ -1,17 +1,6 @@
 const UserModel = require("../../models/user.model");
 const authSchema = {
     userName: {
-        custom: {
-            options: value => {
-                return UserModel.find({
-                    userName: value
-                }).then(user => {
-                    if (user.length > 0) {
-                        return Promise.reject('User already Exist')
-                    }
-                })
-            }
-        },
         notEmpty: true,
         errorMessage: "Username is required",
         isLength:({ min:3 })
