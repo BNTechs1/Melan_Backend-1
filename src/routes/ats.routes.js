@@ -1,5 +1,5 @@
 const express = require("express");
-const AtsController = require("../controller/Ats.controller");
+const AtsController = require("../controller/ats.controller");
 const router = express.Router();
 const AtsScheama = require("../utils/validation/atsSchema.validation");
 const {checkSchema} = require('express-validator');
