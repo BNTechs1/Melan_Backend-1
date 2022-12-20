@@ -86,7 +86,10 @@ const login = asyncHandler(async(req,res)=>{
   })
 })
 
-
+const authcheck = asyncHandler(async(req,res,next)=>{
+ 
+      return res.status(200).send("Authorized Crediential")
+})
 
 const userProfile = asyncHandler(async(req,res,next)=>{
   userSchema.findById(req.params.id, (error, data) => {
@@ -102,5 +105,6 @@ const userProfile = asyncHandler(async(req,res,next)=>{
 module.exports = {
     register,
     login,
-    userProfile
+    userProfile,
+    authcheck
 }
