@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Generatorschema = mongoose.Schema({
+const PumpSchema = mongoose.Schema({
     pumpId:{
         type:String
     },
@@ -38,4 +38,4 @@ const Generatorschema = mongoose.Schema({
     }
  });
 
-module.exports = mongoose.model('Generator', Generatorschema);
+module.exports = mongoose.model('Pump', PumpSchema);
