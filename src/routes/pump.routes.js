@@ -39,7 +39,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PumpScheama.p
       // fs.unLinkSync(path)
     }
     const pumpId = uuidv4()
-    const Pump = new pumpModel({
+    const Pump = new PumpModel({
       pumpId: pumpId,
       pumpType:req.body.pumpType,
       motorCapacity:req.body.motorCapacity,
