@@ -22,6 +22,7 @@ const partner = require("./src/routes/partner.routes")
 const about = require("./src/routes/about.routes")
 const generator = require("./src/routes/generator.routes")
 const ats = require("./src/routes/ats.routes")
+const pump = require("./src/routes/pump.routes")
 
 
 
@@ -45,6 +46,8 @@ app.use("/api/partner", partner)
 app.use("/api/about", about)
 app.use("/api/generator", generator)
 app.use("/api/ats", ats)
+app.use("/api/pump", pump)
+
 
 
 
