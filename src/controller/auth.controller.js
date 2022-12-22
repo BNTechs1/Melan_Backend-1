@@ -88,7 +88,7 @@ const login = asyncHandler(async(req,res)=>{
 
 const authcheck = asyncHandler(async(req,res,next)=>{
  
-      return res.status(200).send("Authorized Crediential")
+      return res.status(200).send(true)
 })
 
 const userProfile = asyncHandler(async(req,res,next)=>{
