@@ -23,6 +23,9 @@ const about = require("./src/routes/about.routes")
 const generator = require("./src/routes/generator.routes")
 const ats = require("./src/routes/ats.routes")
 const pump = require("./src/routes/pump.routes")
+const genset = require("./src/routes/pump.routes")
+const sparePart = require("./src/routes/sparePart.routes")
+
 
 
 
@@ -47,6 +50,10 @@ app.use("/api/about", about)
 app.use("/api/generator", generator)
 app.use("/api/ats", ats)
 app.use("/api/pump", pump)
+app.use("/api/genset", genset)
+app.use("/api/sparePart", sparePart)
+
+
 
 
 
