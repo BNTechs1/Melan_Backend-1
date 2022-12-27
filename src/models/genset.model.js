@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const GensetSchema = mongoose.Schema({
-    gensetId:{
+    proudctId:{
         type:String
     },
     gensetBrand:{

@@ -38,9 +38,9 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(SparePartSch
         urls.push(newPath)
         // fs.unLinkSync(path)
     }
-    const sparePartId = uuidv4()
+    const productId = uuidv4()
     const sparePart = new SparePartModel({
-        sparePartId: sparePartId,
+        productId: productId,
         sparePartType: req.body.sparePartType,
         subType: subType,
         sparePartBrand: req.body.sparePartBrand,
@@ -57,7 +57,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(SparePartSch
         res.status(201).json({
             message: "Product created successfully!",
             sparePartCreated: {
-                sparePartId: sparePartId,
+                productId: productId,
                 sparePartType: req.body.sparePartType,
                 subType: subType,
                 sparePartBrand: req.body.sparePartBrand,
@@ -86,7 +86,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
         urls.push(newPath)
         // fs.unLinkSync(path)
     }
-    let sparePart = await sparePartModel.findOne({ sparePartId: req.params.id });
+    let sparePart = await sparePartModel.findOne({ productId: req.params.id });
     sparePart.updateOne(
         {
             $set: {

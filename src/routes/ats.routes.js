@@ -38,9 +38,9 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(AtsScheama.at
       urls.push(newPath)
       // fs.unLinkSync(path)
     }
-    const atsId = uuidv4()
+    const productId = uuidv4()
     const Ats = new AtsModel({
-      atsId: atsId,
+      productId: productId,
       atsRange:req.body.atsRange,
       amp:req.body.amp,
       name:req.body.name,
@@ -55,7 +55,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(AtsScheama.at
       res.status(201).json({
         message: "Product created successfully!",
         AtsCreated: {
-            atsId: atsId,
+            productId: productId,
       atsRange:req.body.atsRange,
       amp:req.body.amp,
       name:req.body.name,
@@ -83,7 +83,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
       urls.push(newPath)
       // fs.unLinkSync(path)
     }
-  let Ats = await AtsModel.findOne({AtsId: req.params.id});
+  let Ats = await AtsModel.findOne({productId: req.params.id});
   Ats.updateOne(
     {
       $set:{

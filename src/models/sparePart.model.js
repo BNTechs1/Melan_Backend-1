@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const GensetSchema = mongoose.Schema({
-    sparePartId:{
+const SparePartSchema = mongoose.Schema({
+    productId:{
         type:String
     },
     sparePartType:{
@@ -29,4 +29,4 @@ const GensetSchema = mongoose.Schema({
     },
     
  });
-module.exports = mongoose.model('Genset', GensetSchema);
+module.exports = mongoose.model('SparePart',  SparePartSchema);

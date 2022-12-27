@@ -38,9 +38,9 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(GeneratorSche
       urls.push(newPath)
       // fs.unLinkSync(path)
     }
-    const generatorId = uuidv4()
+    const productId = uuidv4()
     const Generator = new GeneratorModel({
-      generatorId: generatorId,
+      productId: productId,
       generatorType:req.body.generatorType,
       capacity:req.body.capacity,
       generatorBrand:req.body.generatorBrand,
@@ -58,7 +58,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(GeneratorSche
       res.status(201).json({
         message: "Product created successfully!",
         GeneratorCreated: {
-            generatorId: generatorId,
+            productId: productId,
             generatorType:result.generatorType,
             capacity:result.capacity,
             generatorBrand:result.generatorBrand,
@@ -90,7 +90,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(Generator
       urls.push(newPath)
       // fs.unLinkSync(path)
     }
-  let generator = await GeneratorModel.findOne({generatorId: req.params.id});
+  let generator = await GeneratorModel.findOne({productId: req.params.id});
   generator.updateOne(
     {
       $set:{

@@ -9,7 +9,7 @@ const getPumps = asyncHandler(async(req,res)=>{
 });
 
 const getPump = asyncHandler(async(req,res)=>{
-    const pump = await PumpModel.find({pumpId:req.params.id});
+    const pump = await PumpModel.find({productId:req.params.id});
     const resut =  {
         data: pump
     }
@@ -17,9 +17,9 @@ const getPump = asyncHandler(async(req,res)=>{
 });
 
 const deletePump = asyncHandler(async(req,res)=>{
-    const currentPump= await PumpModel.find({pumpId:req.params.id});
-      await PumpModel.deleteOne({pumpId:req.params.id});
-      res.send(`About ${currentPump[0].pumpId} removed`);
+    const currentPump= await PumpModel.find({productId:req.params.id});
+      await PumpModel.deleteOne({productId:req.params.id});
+      res.send(`About ${currentPump[0].productId} removed`);
 })
 
 module.exports = {

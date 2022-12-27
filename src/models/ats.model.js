@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const ATSschema = mongoose.Schema({
-    atsId:{
+    productId:{
         type:String
     },
     atsRange:{

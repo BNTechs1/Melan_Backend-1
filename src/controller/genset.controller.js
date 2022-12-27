@@ -9,7 +9,7 @@ const getGensets = asyncHandler(async(req,res)=>{
 });
 
 const getGenset = asyncHandler(async(req,res)=>{
-    const Genset = await GensetModel.find({gensetId:req.params.id});
+    const Genset = await GensetModel.find({productId:req.params.id});
     const resut =  {
         data: Genset
     }
@@ -17,9 +17,9 @@ const getGenset = asyncHandler(async(req,res)=>{
 });
 
 const deleteGenset = asyncHandler(async(req,res)=>{
-    const currentGenset= await AboutModel.find({gensetId:req.params.id});
-      await GensetModel.deleteOne({gensetId:req.params.id});
-      res.send(`About ${currentGenset[0].gensetId} removed`);
+    const currentGenset= await AboutModel.find({productId:req.params.id});
+      await GensetModel.deleteOne({productId:req.params.id});
+      res.send(`About ${currentGenset[0].productId} removed`);
 })
 
 module.exports = {

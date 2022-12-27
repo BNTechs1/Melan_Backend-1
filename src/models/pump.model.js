@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const PumpSchema = mongoose.Schema({
-    pumpId:{
+    productId:{
         type:String
     },
     pumpType:{

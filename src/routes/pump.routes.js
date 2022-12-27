@@ -38,9 +38,9 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PumpScheama.p
       urls.push(newPath)
       // fs.unLinkSync(path)
     }
-    const pumpId = uuidv4()
+    const productId = uuidv4()
     const Pump = new PumpModel({
-      pumpId: pumpId,
+      productId: productId,
       pumpType:req.body.pumpType,
       motorCapacity:req.body.motorCapacity,
       pumpBrand:req.body.pumpBrand,
@@ -59,7 +59,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PumpScheama.p
       res.status(201).json({
         message: "Product created successfully!",
         pumpCreated: {
-            pumpId: pumpId,
+            productId: productId,
             pumpType:result.pumpType,
             motorCapacity:result.motorCapacity,
             pumpBrand:result.pumpBrand,
@@ -91,7 +91,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
       urls.push(newPath)
       // fs.unLinkSync(path)
     }
-  let pump = await PumpModel.findOne({pumpId: req.params.id});
+  let pump = await PumpModel.findOne({productId: req.params.id});
   pump.updateOne(
     {
       $set:{

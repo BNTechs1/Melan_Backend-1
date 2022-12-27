@@ -38,9 +38,9 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
         urls.push(newPath)
         // fs.unLinkSync(path)
     }
-    const gensetId = uuidv4()
+    const productId = uuidv4()
     const Genset = new GensetModel({
-        gensetId: gensetId,
+        productId: productId,
         gensetBrand: req.body.gensetBrand,
         gensetPartNumber: req.body.gensetPartNumber,
         name: req.body.name,
@@ -55,7 +55,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
         res.status(201).json({
             message: "Product created successfully!",
             GensetCreated: {
-                gensetId: gensetId,
+                productId: productId,
                 gensetBrand: req.body.gensetBrand,
                 gensetPartNumber: req.body.gensetPartNumber,
                 name: req.body.name,
@@ -84,7 +84,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
         urls.push(newPath)
         // fs.unLinkSync(path)
     }
-    let Genset = await GensetModel.findOne({ GensetId: req.params.id });
+    let Genset = await GensetModel.findOne({ productId: req.params.id });
     Genset.updateOne(
         {
             $set: {

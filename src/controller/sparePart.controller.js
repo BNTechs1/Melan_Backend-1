@@ -9,7 +9,7 @@ const getspareParts = asyncHandler(async(req,res)=>{
 });
 
 const getsparePart = asyncHandler(async(req,res)=>{
-    const sparePart = await sparePartModel.find({sparePartId:req.params.id});
+    const sparePart = await sparePartModel.find({productId:req.params.id});
     const resut =  {
         data: sparePart
     }
@@ -17,9 +17,9 @@ const getsparePart = asyncHandler(async(req,res)=>{
 });
 
 const deletesparePart = asyncHandler(async(req,res)=>{
-    const currentsparePart= await AboutModel.find({sparePartId:req.params.id});
-      await sparePartModel.deleteOne({sparePartId:req.params.id});
-      res.send(`About ${currentsparePart[0].sparePartId} removed`);
+    const currentsparePart= await AboutModel.find({productId:req.params.id});
+      await sparePartModel.deleteOne({productId:req.params.id});
+      res.send(`About ${currentsparePart[0].productId} removed`);
 })
 
 module.exports = {

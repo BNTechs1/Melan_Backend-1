@@ -9,7 +9,7 @@ const getGenerators = asyncHandler(async(req,res)=>{
 });
 
 const getGenerator = asyncHandler(async(req,res)=>{
-    const generator = await GeneratorModel.find({generatorId:req.params.id});
+    const generator = await GeneratorModel.find({productId:req.params.id});
     const resut =  {
         data: generator
     }
@@ -17,9 +17,9 @@ const getGenerator = asyncHandler(async(req,res)=>{
 });
 
 const deleteGenerator = asyncHandler(async(req,res)=>{
-    const currentAbout= await AboutModel.find({aboutId:req.params.id});
-      await AboutModel.deleteOne({aboutId:req.params.id});
-      res.send(`About ${currentHero[0].aboutId} removed`);
+    const currentGenerator= await GeneratorModel.find({productId:req.params.id});
+      await GeneratorModel.deleteOne({productId:req.params.id});
+      res.send(`About ${currentGenerator[0].productId} removed`);
 })
 
 module.exports = {
