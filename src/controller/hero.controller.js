@@ -17,7 +17,7 @@ const getHero = asyncHandler(async(req,res)=>{
 });
 
 const deleteHero = asyncHandler(async(req,res)=>{
-      await HeroModel.deleteOne({userId:req.params.id});
+      await HeroModel.deleteOne({heroId:req.params.id});
       res.status(200).send(`Deleted Successfully`);
 })
 
