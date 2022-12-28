@@ -67,9 +67,8 @@ const getPortfolio = asyncHandler(async(req,res)=>{
 });
 
 const deletePortfolio = asyncHandler(async(req,res)=>{
-    const currentPortfolio= await PortfolioModel.find({portfolioId:req.params.id});
       await PortfolioModel.deleteOne({portfolioId:req.params.id});
-      res.send(`Service ${currentPortfolio[0].portfolioId} removed`);
+      res.status(200).send(`Deleted Sucessfully`);
 })
 
 module.exports = {

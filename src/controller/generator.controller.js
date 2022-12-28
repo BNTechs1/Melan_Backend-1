@@ -17,9 +17,8 @@ const getGenerator = asyncHandler(async(req,res)=>{
 });
 
 const deleteGenerator = asyncHandler(async(req,res)=>{
-    const currentGenerator= await GeneratorModel.find({productId:req.params.id});
       await GeneratorModel.deleteOne({productId:req.params.id});
-      res.send(`About ${currentGenerator[0].productId} removed`);
+      res.status(200).send(`Deleted Sucessfully`);
 })
 
 module.exports = {

@@ -17,9 +17,8 @@ const getPump = asyncHandler(async(req,res)=>{
 });
 
 const deletePump = asyncHandler(async(req,res)=>{
-    const currentPump= await PumpModel.find({productId:req.params.id});
       await PumpModel.deleteOne({productId:req.params.id});
-      res.send(`About ${currentPump[0].productId} removed`);
+      res.status(200).send("Deleted Succesfully");
 })
 
 module.exports = {

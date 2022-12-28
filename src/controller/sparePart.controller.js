@@ -17,9 +17,8 @@ const getsparePart = asyncHandler(async(req,res)=>{
 });
 
 const deletesparePart = asyncHandler(async(req,res)=>{
-    const currentsparePart= await AboutModel.find({productId:req.params.id});
       await sparePartModel.deleteOne({productId:req.params.id});
-      res.send(`About ${currentsparePart[0].productId} removed`);
+      res.status(200).send(`Deleted Successfully`);
 })
 
 module.exports = {

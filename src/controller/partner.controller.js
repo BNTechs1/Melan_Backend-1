@@ -17,9 +17,8 @@ const getPartner = asyncHandler(async(req,res)=>{
 });
 
 const deletePartner = asyncHandler(async(req,res)=>{
-    const currentPartner= await PartnerModel.find({partnerId:req.params.id});
       await PartnerModel.deleteOne({partnerId:req.params.id});
-      res.send(`Partner ${currentPartner[0].partnerId} removed`);
+      res.status(200).send(`Deleted Succesfully`);
 })
 
 module.exports = {

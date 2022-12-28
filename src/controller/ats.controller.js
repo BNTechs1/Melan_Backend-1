@@ -17,10 +17,9 @@ const getAts = asyncHandler(async(req,res)=>{
 });
 
 const deleteAts = asyncHandler(async(req,res)=>{
-    const currentAts= await AtsModel.find({productId:req.params.id});
       await AtsModel.deleteOne({productId:req.params.id});
-      res.send(`About ${currentAts[0].productId} removed`);
-})
+      res.status(200).send("Delted Successfully")
+});
 
 module.exports = {
     getAts,

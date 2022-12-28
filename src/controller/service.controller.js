@@ -67,9 +67,8 @@ const getService = asyncHandler(async(req,res)=>{
 });
 
 const deleteService = asyncHandler(async(req,res)=>{
-    const currentService= await ServiceModel.find({serviceId:req.params.id});
       await ServiceModel.deleteOne({serviceId:req.params.id});
-      res.send(`Service ${currentService[0].serviceId} removed`);
+      res.status(200).send(`Deleted Successfully`);
 })
 
 module.exports = {

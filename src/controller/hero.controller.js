@@ -17,9 +17,8 @@ const getHero = asyncHandler(async(req,res)=>{
 });
 
 const deleteHero = asyncHandler(async(req,res)=>{
-    const currentHero= await HeroModel.find({userId:req.params.id});
       await HeroModel.deleteOne({userId:req.params.id});
-      res.send(`Hero ${currentHero[0].userId} removed`);
+      res.status(200).send(`Deleted Successfully`);
 })
 
 module.exports = {
