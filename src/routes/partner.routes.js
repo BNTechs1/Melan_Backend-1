@@ -40,8 +40,8 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PartnerSchema
     }
     const partnerId = uuidv4()
     const Partner = new PartnerModel({
-      partnerd: partnerId,
-      title:req.body.title,
+      partnerId: partnerId,
+      name:req.body.name,
       files:urls
     });
 
@@ -49,7 +49,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PartnerSchema
 
       res.status(201).json({
         message: "Done upload!",
-        HeroCreated: {
+        PartnerCreated: {
           partnerId:result.partnerId,
           name: result.name,
           files: result.files
@@ -85,9 +85,9 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PartnerSc
      
     res.status(201).json({
       message: "Partner updated successfully!",
-      HeroUpdated: {
-        name: hero.name,
-        files: hero.files
+      PartnerUpdated: {
+        name: partner.name,
+        files: partner.files
       }
     })
   })
