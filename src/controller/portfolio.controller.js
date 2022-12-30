@@ -13,10 +13,10 @@ const createPortfolio = asyncHandler(async(req,res)=>{
     const { title, longDesc, shortDesc } = req.body;
     const portfolioId = uuidv4();
     const portfolio = await new PortfolioModel({
-            portfolioId,
-            shortDesc,
-            title,
-            longDesc, 
+           portfolioId,
+           shortDesc,
+           title,
+           longDesc, 
         }).save();
     res.status(200).json({
         success: true,

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const PortfolioSchema = mongoose.Schema({
-    serviceId:{
+    portfolioId:{
         type:String
     },
     title:{
