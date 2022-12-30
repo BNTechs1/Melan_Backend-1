@@ -13,7 +13,7 @@ const SparePartSchema = mongoose.Schema({
         type:String
     },
     sparePartNumber:{
-        type:Number
+        type:String
     },
     name: {
         type: String
