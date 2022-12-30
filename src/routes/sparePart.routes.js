@@ -42,7 +42,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(SparePartSch
     const sparePart = new SparePartModel({
         productId: productId,
         sparePartType: req.body.sparePartType,
-        subType: subType,
+        subType: req.body.subType,
         sparePartBrand: req.body.sparePartBrand,
         sparePartNumber: req.body.sparePartNumber,
         name: req.body.name,
@@ -59,7 +59,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(SparePartSch
             sparePartCreated: {
                 productId: productId,
                 sparePartType: req.body.sparePartType,
-                subType: subType,
+                subType: req.body.subType,
                 sparePartBrand: req.body.sparePartBrand,
                 sparePartNumber: req.body.sparePartNumber,
                 name: req.body.name,
@@ -91,7 +91,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
         {
             $set: {
                 sparePartType: req.body.sparePartType,
-                subType: subType,
+                subType: req.body.subType,
                 sparePartBrand: req.body.sparePartBrand,
                 sparePartNumber: req.body.sparePartNumber,
                 name: req.body.name,
@@ -107,7 +107,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
         message: "Product updated successfully!",
         sparePartUpdated: {
             sparePartType: req.body.sparePartType,
-            subType: subType,
+            subType: req.body.subType,
             sparePartBrand: req.body.sparePartBrand,
             sparePartNumber: req.body.sparePartNumber,
             name: req.body.name,
