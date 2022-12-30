@@ -25,6 +25,8 @@ const ats = require("./src/routes/ats.routes")
 const pump = require("./src/routes/pump.routes")
 const genset = require("./src/routes/pump.routes")
 const sparePart = require("./src/routes/sparePart.routes")
+const product = require("./src/routes/product.routes")
+
 
 
 
@@ -52,14 +54,7 @@ app.use("/api/ats", ats)
 app.use("/api/pump", pump)
 app.use("/api/genset", genset)
 app.use("/api/sparePart", sparePart)
-
-
-
-
-
-
-
-
+app.use("/api/product", product)
 
 // Add Middleware
 app.use(errorMiddleware);
