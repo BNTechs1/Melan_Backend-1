@@ -22,7 +22,7 @@ const OrderSchema = mongoose.Schema({
         type:Date
     }, 
     quantity:{
-        type:String
+        type:Number,
     }, 
     status:{
         type:String,

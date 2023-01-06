@@ -22,10 +22,10 @@ const rentProductchema = mongoose.Schema({
         type:String,
     },
     price:{
-        type:String,
+        type:Number,
     },
     quantity:{
-        type:String
+        type:Number
     },
     generatorType:{
         type:String,

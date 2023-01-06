@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const { v4: uuidv4 } = require('uuid')
 const OrderModel = require("../models/order.model")
 const CustomerModel = require("../models/customer.model");
-
+const RentProductModel = require("../models/productrent.model")
 const getOrders = asyncHandler(async (req, res) => {
     const orders = await OrderModel.find();
 
@@ -14,7 +14,7 @@ const getOrders = asyncHandler(async (req, res) => {
 })
 //user mke reservation for the product
 const orderProduct = asyncHandler(async (req, res) => {
-    const { productId, startDate, endDate } = req.body;
+    const { productId, startDate, endDate, quantity } = req.body;
     const custId = uuidv4();
     const customer = new CustomerModel({
         custId: custId,
@@ -40,6 +40,13 @@ const orderProduct = asyncHandler(async (req, res) => {
         }
     })
 
+    const product = await RentProductModel.findOne({ productId:productId});
+    const remainQuantity = product.quantity - Cquantity
+    if(quantity <= remainQuantity){
+        res.send("worked")
+    } else{
+        res.send("didnt work")
+    }
     const orderId = uuidv4();
     const reservation = new OrderModel({
         orderId: orderId,
@@ -69,8 +76,9 @@ const orderProduct = asyncHandler(async (req, res) => {
                 email: result.email,
                 availablity: result.availablity,
             }
-        })
-    }).catch * (err => {
+})
+    })
+    .catch * (err => {
         console.log(err),
             res.status(500).json({
                 error: err
