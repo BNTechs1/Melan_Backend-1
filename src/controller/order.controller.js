@@ -22,9 +22,9 @@ const orderProduct = asyncHandler(async (req, res) => {
         name: req.body.name,
         phoneNumber: req.body.phoneNumber,
     });
-    const order = await OrderModel.find({ productId: productId });
+    const order = await OrderModel.find({ productId: productId, status: "Approved" });
     // console.log("Order", order)
-    const Cquantity = 0;
+    let Cquantity = 0;
     order.map((booked) => {
         const bookedStartDate = new Date(booked.startDate);
         const bookedEndDate = new Date(booked.endDate);
@@ -33,22 +33,19 @@ const orderProduct = asyncHandler(async (req, res) => {
 
         if (bookedEndDate.getTime() >= newStartDate.getTime()
             && bookedEndDate.getTime() <= newEndDate.getTime()
-            || bookedStartDate.getTime() >= newStartDate.getTime() 
+            || bookedStartDate.getTime() >= newStartDate.getTime()
             && bookedStartDate.getTime() <= newEndDate.getTime()) {
             console.log("Booked", booked)
             Cquantity += booked.quantity
         }
     })
 
-    const product = await RentProductModel.findOne({ productId:productId});
+    const product = await RentProductModel.findOne({ productId: productId });
     const remainQuantity = product.quantity - Cquantity
-    if(quantity <= remainQuantity){
-        res.send("worked")
-    } else{
-        res.send("didnt work")
-    }
+
+    customer.save()
     const orderId = uuidv4();
-    const reservation = new OrderModel({
+    const reservation = {
         orderId: orderId,
         email: req.body.email,
         name: req.body.name,
@@ -57,33 +54,37 @@ const orderProduct = asyncHandler(async (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         quantity: req.body.quantity,
-    });
-    customer.save();
-    reservation.save().then(result => {
-        res.status(201).json({
-            message: "We have recived your reservation request, we will contact you",
-            reservationCreated: {
-                orderId: result.orderId,
-                productId: result.productId,
-                custId: result.custId,
-                email: result.email,
-                name: result.name,
-                phoneNumber: result.phoneNumber,
-                startDate: result.startDate,
-                endDate: result.endDate,
-                status: result.status,
-                quantity:result.quantity,
-                email: result.email,
-                availablity: result.availablity,
-            }
-})
-    })
-    .catch * (err => {
-        console.log(err),
-            res.status(500).json({
-                error: err
-            });
-    });
+    };
+    console.log("remainQuantity",remainQuantity)
+    if (quantity <= remainQuantity) {
+        reservation.avaliablity = "Available"
+        const reserved = new OrderModel(reservation);
+        reserved.save().then(result => {
+            res.status(201).json({
+                message: "We have recived your reservation request, we will contact you",
+                order
+            })
+        }).catch * (err => {
+            console.log(err),
+                res.status(500).json({
+                    error: err
+                });
+        });
+    } else {
+        reservation.avaliablity = "Not Available"
+        const reserved = new OrderModel(reservation);
+        reserved.save().then(result => {
+            res.status(201).json({
+                message: "product not available",
+                order
+            })
+        }).catch * (err => {
+            console.log(err),
+                res.status(500).json({
+                    error: err
+                });
+        });
+    }
 });
 
 module.exports = {
