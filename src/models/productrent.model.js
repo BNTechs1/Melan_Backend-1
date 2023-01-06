@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const remtProductchema = mongoose.Schema({
+const rentProductchema = mongoose.Schema({
     productId:{
         type:String,
     },
@@ -22,7 +22,7 @@ const remtProductchema = mongoose.Schema({
         type:String,
     },
     price:{
-        type:Number,
+        type:String,
     },
     quanity:{
         type:String
@@ -31,7 +31,7 @@ const remtProductchema = mongoose.Schema({
         type:String,
     },
     capacity:{
-        type:Number
+        type:String
     },
     generatorBrand:{
         type:String,
@@ -42,6 +42,9 @@ const remtProductchema = mongoose.Schema({
     alterantorBrand:{
         type:String
     }, 
+    searchKeyWord:{
+        type:String
+    }
  });
 
-module.exports = mongoose.model('Rentproduct', remtProductchema);
+module.exports = mongoose.model('Rentproduct', rentProductchema);
