@@ -40,6 +40,10 @@ const rentProductSchema = {
         notEmpty: true,
         errorMessage: "Per is required"
     },
+    quantity:{
+        notEmpty: true,
+        errorMessage: "Quantity is required"
+    },
     minDuration:{
         notEmpty: true,
         errorMessage: "Minimum Duration is required"
