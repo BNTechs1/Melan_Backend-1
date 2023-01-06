@@ -11,8 +11,8 @@ const connectToDB = async () => {
       { printLocation: "db_config.js:12" },
       { textColor: "yellow" }
     );
-    // "mongodb+srv://admin:bnadminpass@cluster0.ze5z9gi.mongodb.net/"
-    const DBConnection = await mongoose.connect("mongodb://localhost:27017/Melan", {
+    // 
+    const DBConnection = await mongoose.connect("mongodb+srv://admin:bnadminpass@cluster0.ze5z9gi.mongodb.net/", {
       useNewUrlParser: true,
       // useCreateIndex: true,
       useUnifiedTopology: true,

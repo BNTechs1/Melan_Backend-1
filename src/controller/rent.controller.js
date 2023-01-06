@@ -20,9 +20,7 @@ const orderProduct = asyncHandler(async (req, res) => {
         email: req.body.email,
         name: req.body.name,
         phoneNumber: req.body.phoneNumber,
-       
-    })
-
+    });
     const orderId = uuidv4();
     const reservation = new OrderModel({
         orderId: orderId,
@@ -36,8 +34,6 @@ const orderProduct = asyncHandler(async (req, res) => {
         status: req.body.status, 
         avaliablity: req.body.avaliablity
     });
-
-   
     customer.save();
     reservation.save().then(result => {
         res.status(201).json({
