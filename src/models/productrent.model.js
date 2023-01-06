@@ -24,7 +24,7 @@ const rentProductchema = mongoose.Schema({
     price:{
         type:String,
     },
-    quanity:{
+    quantity:{
         type:String
     },
     generatorType:{
