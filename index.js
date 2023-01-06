@@ -26,10 +26,7 @@ const pump = require("./src/routes/pump.routes")
 const genset = require("./src/routes/pump.routes")
 const sparePart = require("./src/routes/sparePart.routes")
 const product = require("./src/routes/product.routes")
-
-
-
-
+const rent = require("./src/routes/productrent.routes")
 
 // Add Node Features
 app.use(express.json({ limit: "50mb" }));
@@ -55,6 +52,8 @@ app.use("/api/pump", pump)
 app.use("/api/genset", genset)
 app.use("/api/sparePart", sparePart)
 app.use("/api/product", product)
+app.use("/api/rent", rent)
+
 
 // Add Middleware
 app.use(errorMiddleware);
