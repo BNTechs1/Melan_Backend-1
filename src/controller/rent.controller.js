@@ -5,9 +5,13 @@ const OrderModel = require("../models/order.model")
 const CustomerModel = require("../models/customer.model");
 
 
-// const getOrders = asyncHandler(async(req,res)=>{
-//     const orders = await OrderModel.find();     
-// })
+const getOrders = asyncHandler(async(req,res)=>{
+    const orders = await OrderModel.find();     
+    const resut =  {
+        data: orders
+    }
+    res.status(200).send(resut)
+})
 //user mke reservation for the product
 const orderProduct = asyncHandler(async (req, res) => {
     const custId = uuidv4();
@@ -85,4 +89,5 @@ module.exports = {
     getProducts,
     getProduct,
     deleteProduct,
+    getOrders
 }
