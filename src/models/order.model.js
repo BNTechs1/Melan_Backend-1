@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Bookschema = mongoose.Schema({
+const OrderSchema = mongoose.Schema({
     orderId:{
         type:String
     },
@@ -16,10 +16,10 @@ const Bookschema = mongoose.Schema({
         type: String
     },
     startDate:{
-        type:String
+        type:Date
     },
     endDate:{
-        type:String
+        type:Date
     }, 
     quantity:{
         type:String
@@ -32,4 +32,4 @@ const Bookschema = mongoose.Schema({
     }
  });
 
-module.exports = mongoose.model('Book', Bookschema);
+module.exports = mongoose.model('Order', OrderSchema);

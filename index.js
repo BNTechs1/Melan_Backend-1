@@ -53,7 +53,7 @@ app.use("/api/genset", genset)
 app.use("/api/sparePart", sparePart)
 app.use("/api/product", product)
 app.use("/api/rent", rent)
-app.use("api/order", order)
+app.use("/api/order", order)
 
 // Add Middleware
 app.use(errorMiddleware);

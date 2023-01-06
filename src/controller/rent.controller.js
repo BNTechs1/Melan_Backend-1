@@ -3,6 +3,7 @@ const RentProductModel = require("../models/productrent.model");
 
 const getProducts = asyncHandler(async(req,res)=>{
     const products = await RentProductModel.find();
+    console.log("products",products)
     const resut =  {
         data: products
     }
