@@ -135,7 +135,8 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(RentProdu
     }
   })
 })
-
+router.post("/orderproduct", auth, RentProductController.orderProduct)
+router.get("orders")
 router.get("/get", RentProductController.getProducts);
 router.get("/show/:id", RentProductController.getProduct);
 router.delete("/delete/:id", RentProductController.deleteProduct);

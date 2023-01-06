@@ -27,7 +27,7 @@ const genset = require("./src/routes/pump.routes")
 const sparePart = require("./src/routes/sparePart.routes")
 const product = require("./src/routes/product.routes")
 const rent = require("./src/routes/productrent.routes")
-
+const order = require("./src/routes/orders.routes")
 // Add Node Features
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
