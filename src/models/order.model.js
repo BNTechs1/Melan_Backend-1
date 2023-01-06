@@ -25,7 +25,8 @@ const OrderSchema = mongoose.Schema({
         type:String
     }, 
     status:{
-        type:String
+        type:String,
+        default: "pending"
     }, 
     avaliablity:{
         type:String

@@ -6,7 +6,8 @@ const CustomerModel = require("../models/customer.model");
 
 const getOrders = asyncHandler(async(req,res)=>{
     const orders = await OrderModel.find();   
-    console.log("orders", orders)  
+    
+    
     const resut =  {
         data: orders
     }
@@ -14,6 +15,7 @@ const getOrders = asyncHandler(async(req,res)=>{
 })
 //user mke reservation for the product
 const orderProduct = asyncHandler(async (req, res) => {
+    const { productId, startDate, endDate } = req.body;
     const custId = uuidv4();
     const customer = new CustomerModel({
         custId: custId,
@@ -21,6 +23,14 @@ const orderProduct = asyncHandler(async (req, res) => {
         name: req.body.name,
         phoneNumber: req.body.phoneNumber,
     });
+//     const order = await OrderModel.find();
+//     const o = order.filter(
+//         (i) => i.productId === productId
+//     )
+//    o.filter(
+//     (i)
+//    )
+    
     const orderId = uuidv4();
     const reservation = new OrderModel({
         orderId: orderId,
@@ -31,7 +41,6 @@ const orderProduct = asyncHandler(async (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         quntity:req.body.quantity,
-        status: req.body.status, 
     });
     customer.save();
     reservation.save().then(result => {
