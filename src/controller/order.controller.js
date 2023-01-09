@@ -11,7 +11,37 @@ const getOrders = asyncHandler(async (req, res) => {
         data: orders
     }
     res.status(200).send(resut)
-})
+}) 
+
+const approval = asyncHandler(async (req,res)=>{
+    const { status } = req.body;
+    const order = await OrderModel.findOne({ productId: req.body.productId});
+    order.updateOne(
+        {
+            $set:{
+                status: status
+            }
+        }
+    )
+    res.status(201).json({
+        message:"Order Approved"
+    })
+});
+
+const rejected = asyncHandler(async (req,res)=>{
+    const { status } = req.body;
+    const order = await OrderModel.findOne({ productId: req.body.productId});
+    order.updateOne(
+        {
+            $set:{
+                status: status
+            }
+        }
+    )
+    res.status(201).json({
+        message:"Order Rejected"
+    })
+});
 //user mke reservation for the product
 const orderProduct = asyncHandler(async (req, res) => {
     const { productId, startDate, endDate, quantity } = req.body;
@@ -89,5 +119,7 @@ const orderProduct = asyncHandler(async (req, res) => {
 
 module.exports = {
     orderProduct,
-    getOrders
+    getOrders, 
+    approval, 
+    rejected
 }

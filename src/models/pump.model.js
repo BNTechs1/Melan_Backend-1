@@ -6,7 +6,7 @@ const PumpSchema = mongoose.Schema({
     pumpType:{
         type:String,
     },
-    motorcapacity:{
+    motorCapacity:{
         type:Number
     },
     pumpBrand:{

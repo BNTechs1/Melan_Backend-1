@@ -9,7 +9,7 @@ const getGensets = asyncHandler(async(req,res)=>{
 });
 
 const getGenset = asyncHandler(async(req,res)=>{
-    const Genset = await GensetModel.find({productId:req.params.id});
+    const Genset = await GensetModel.findOne({productId:req.params.id});
     const resut =  {
         data: Genset
     }
