@@ -80,7 +80,8 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PartnerSc
         name: req.body.name,
         files: urls
       }
-    },{new:true}
+    },
+    {},{new:true}
     )
      
     res.status(201).json({

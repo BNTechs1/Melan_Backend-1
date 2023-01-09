@@ -107,7 +107,8 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
       files:urls,
       searchKeyWord: req.body.pumpType + req.body.capacity + req.body.pumpBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
       }
-    },{new:true}
+    },
+    {},{new:true}
     )
      
     res.status(201).json({

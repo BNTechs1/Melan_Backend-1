@@ -83,7 +83,8 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AboutSche
         description: req.body.description, 
         files: urls
       }
-    },{new:true}
+    },
+    {},{new:true}
     )
      
     res.status(201).json({

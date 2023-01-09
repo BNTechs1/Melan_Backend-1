@@ -98,7 +98,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
       },
 
     },
-      console.log("ats is here"),
+      {},
       {new:true}, 
     )
      

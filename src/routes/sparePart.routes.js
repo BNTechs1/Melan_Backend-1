@@ -100,7 +100,8 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
                 files: urls,
                 searchKeyWord: req.body.sparePartType + req.body.capacity + req.body.sparePartBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
             }
-        }, { new: true }
+        },
+        {}, { new: true }
     )
 
     res.status(201).json({
