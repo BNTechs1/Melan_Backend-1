@@ -47,7 +47,7 @@ const updatePortfolio = asyncHandler(async(req,res)=>{
     res.status(200).json({
         success: true,
         message: 'Portfolio Updated successful',
-        json: service
+        json: portfolio
     });
 })
 const getPortfolios = asyncHandler(async(req,res)=>{
