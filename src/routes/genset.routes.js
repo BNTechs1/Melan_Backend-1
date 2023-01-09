@@ -1,7 +1,7 @@
 const express = require("express");
 const GensetController = require("../controller/genset.controller");
 const router = express.Router();
-const GensetScheama = require("../utils/validation/GensetSchema.validation");
+const GensetScheama = require("../utils/validation/gensetSchema.validation");
 const { checkSchema } = require('express-validator');
 const auth = require("../middleware/auth.middleware")
 const multer = require('multer')
