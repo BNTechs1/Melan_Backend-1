@@ -84,24 +84,10 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
       // fs.unLinkSync(path)
     }
   let Ats = await AtsModel.findOne({productId: req.params.id});
+  // console.log("Ats is here")
   Ats.updateOne(
     {
       $set:{
-        atsRange:req.body.atsRange,
-      amp:req.body.amp,
-      name:req.body.name,
-      description:req.body.description,
-      price:req.body.price,
-      files:urls,
-      searchKeyWord: req.body.atsRange + req.body.amp + req.body.name + req.body.price,
-      }
-    },{new:true}
-    )
-     
-    res.status(201).json({
-      message: "Product updated successfully!",
-      GeneratorUpdated: {
-        AtsType:result.AtsType,
         atsRange:req.body.atsRange,
         amp:req.body.amp,
         name:req.body.name,
@@ -109,6 +95,24 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
         price:req.body.price,
         files:urls,
         searchKeyWord: req.body.atsRange + req.body.amp + req.body.name + req.body.price,
+      },
+
+    },
+      console.log("ats is here"),
+      {new:true}, 
+    )
+     
+    res.status(201).json({
+      message: "Product updated successfully!",
+      AtsUpdated: {
+        AtsType:res.AtsType,
+        atsRange:res.atsRange,
+        amp:res.amp,
+        name:res.name,
+        description:res.description,
+        price:res.price,
+        files:urls,
+        searchKeyWord: res.atsRange + res.amp + res.name + res.price,
       }
     })
   })
