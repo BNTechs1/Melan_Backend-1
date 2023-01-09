@@ -121,5 +121,5 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
 
 router.get("/get", SparePartController.getspareParts);
 router.get("/show/:id", SparePartController.getsparePart);
-router.delete("/delete/:id", SparePartController.deletesparePart);
+router.delete("/delete/:id", auth, SparePartController.deletesparePart);
 module.exports = router;

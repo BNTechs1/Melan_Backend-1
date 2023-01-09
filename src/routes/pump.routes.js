@@ -130,5 +130,5 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
 
 router.get("/get", PumpController.getPumps);
 router.get("/show/:id", PumpController.getPump);
-router.delete("/delete/:id", PumpController.deletePump); 
+router.delete("/delete/:id", auth, PumpController.deletePump); 
 module.exports = router;

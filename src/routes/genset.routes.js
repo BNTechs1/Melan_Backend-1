@@ -115,5 +115,5 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
 
 router.get("/get", GensetController.getGensets);
 router.get("/show/:id", GensetController.getGenset);
-router.delete("/delete/:id", GensetController.deleteGenset);
+router.delete("/delete/:id", auth,  GensetController.deleteGenset);
 module.exports = router;

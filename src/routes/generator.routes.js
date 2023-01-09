@@ -127,5 +127,5 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(Generator
 
 router.get("/get", GeneratorController.getGenerators);
 router.get("/show/:id", GeneratorController.getGenerator);
-router.delete("/delete/:id", GeneratorController.deleteGenerator); 
+router.delete("/delete/:id", auth, GeneratorController.deleteGenerator); 
 module.exports = router;

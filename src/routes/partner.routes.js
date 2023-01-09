@@ -94,6 +94,6 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PartnerSc
 
 router.get("/get", PartnerController.getPartners);
 router.get("/show/:id", PartnerController.getPartner);
-router.delete("/delete/:id", PartnerController.deletePartner);
+router.delete("/delete/:id", auth, PartnerController.deletePartner);
 
 module.exports = router;

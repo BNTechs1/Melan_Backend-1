@@ -139,5 +139,5 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(RentProdu
 })
 router.get("/get", RentProductController.getProducts);
 router.get("/show/:id", RentProductController.getProduct);
-router.delete("/delete/:id", RentProductController.deleteProduct);
+router.delete("/delete/:id", auth, RentProductController.deleteProduct);
 module.exports = router;

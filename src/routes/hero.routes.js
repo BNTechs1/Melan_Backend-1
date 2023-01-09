@@ -98,6 +98,6 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(HeroSchea
 
 router.get("/get", HeroController.getHeros);
 router.get("/show/:id", HeroController.getHero);
-router.delete("/delete/:id", HeroController.deleteHero);
+router.delete("/delete/:id", auth, HeroController.deleteHero);
 
 module.exports = router;
