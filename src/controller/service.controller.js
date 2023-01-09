@@ -42,7 +42,7 @@ const updateService = asyncHandler(async(req,res)=>{
             longDesc:longDesc, 
         }
            
-        }, {new:true})
+        },{}, {new:true})
 
     res.status(200).json({
         success: true,
