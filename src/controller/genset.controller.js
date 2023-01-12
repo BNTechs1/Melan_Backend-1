@@ -1,11 +1,23 @@
 const asyncHandler = require("express-async-handler");
 const GensetModel = require("../models/genset.model");
 const getGensets = asyncHandler(async(req,res)=>{
-    const Genset = await GensetModel.find();
-    const resut =  {
-        data: Genset
-    }
-    res.status(200).send(resut)
+    let query = req.query
+     if(Object.keys(query).length == 0){
+         const genset = await GensetModel.find();
+         const resut =  {
+             data: genset
+         }
+         res.status(200).send(resut)
+ 
+     
+     }  else {
+         const filter = req.query;
+         const genset =  await GensetModel.find(filter);
+         const resut =  {
+             data: genset
+         }
+         res.status(200).send(resut)
+     }    
 });
 
 const getGenset = asyncHandler(async(req,res)=>{
