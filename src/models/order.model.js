@@ -30,6 +30,12 @@ const OrderSchema = mongoose.Schema({
     }, 
     avaliablity:{
         type:String
+    }, 
+    productName:{
+        type:String
+    }, 
+    productImg:{
+        type:Array
     }
  });
 

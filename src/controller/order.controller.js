@@ -5,12 +5,10 @@ const CustomerModel = require("../models/customer.model");
 const RentProductModel = require("../models/productrent.model")
 const getOrders = asyncHandler(async (req, res) => {
     const orders = await OrderModel.find();
-
-
-    const resut = {
+    let result = {
         data: orders
     }
-    res.status(200).send(resut)
+    res.status(200).send(result)
 }) 
 
 const approval = asyncHandler(async (req,res)=>{
@@ -82,6 +80,8 @@ const orderProduct = asyncHandler(async (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         quantity: req.body.quantity,
+        productName: product.name, 
+        productImg:product.files
     };
     console.log("remainQuantity",remainQuantity)
     if (quantity <= remainQuantity) {
