@@ -10,7 +10,6 @@ router.get("/rejectedOrders", auth,orderController.rejectedOrders);
 router.get("/activeOrders", auth,orderController.activeOrders);
 router.get("/scheduledOrders", auth,orderController.scheduledOrders);
 router.get("/approvedOrders", auth, orderController.approvedOrders)
-
 router.put("/approve/:orderId", auth, orderController.approval);
 router.put("/reject/:orderId", auth, orderController.rejected);
 

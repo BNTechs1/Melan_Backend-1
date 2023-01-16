@@ -12,12 +12,12 @@ const getOrders = asyncHandler(async (req, res) => {
 }) 
 const approvedPast = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
-    let result;
+    let result = []
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedEndDate = new Date(booked.endDate)
-    if( bookedEndDate.getTime() < currentDate.getTime()){
-        result = booked
+    if( bookedEndDate.getTime() < currentDate.getTime() && booked.status == "Approved"){
+        result.push(booked)
     }
     
  })
@@ -28,10 +28,10 @@ const approvedPast = asyncHandler(async (req,res)=>{
 });
 const approvedOrders = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
-    let result;
+    let result = [];
    order.map((booked)=>{
     if(booked.status = "Approved"){
-        result = booked
+        result.push(booked)
     }
     
  })
@@ -43,10 +43,10 @@ const approvedOrders = asyncHandler(async (req,res)=>{
 
 const rejectedOrders = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
-    let result;
+    let result = [];
    order.map((booked)=>{
     if(booked.status = "rejected"){
-        result = booked
+        result.push(booked)
     }
     
  })
@@ -58,12 +58,12 @@ const rejectedOrders = asyncHandler(async (req,res)=>{
 
 const activeOrders = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
-    let result;
+    let result = [];
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedEndDate = new Date(booked.endDate)
     if(bookedEndDate.getTime() > currentDate.getTime()){
-        result = booked
+        result.push(booked);
     }
     
  })
@@ -74,12 +74,12 @@ const activeOrders = asyncHandler(async (req,res)=>{
 });
 const scheduledOrders = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
-    let result;
+    let result = [];
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedStartDate = new Date(booked.startDate)
     if(bookedStartDate.getTime() > currentDate.getTime()){
-        result = booked
+        result.push(booked)
     }
     
  })
