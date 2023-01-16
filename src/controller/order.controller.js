@@ -12,14 +12,9 @@ const getOrders = asyncHandler(async (req, res) => {
 }) 
 
 const approval = asyncHandler(async (req,res)=>{
-    const order = await OrderModel.findOne({ productId: req.params.productId});
-    order.updateOne(
-        {
-            $set:{
-                status: "Approved"
-            }
-        }
-    )
+    const order = await OrderModel.findOne({ orderId: req.params.orderId});
+    order.status = "Approved"
+    order.save()
     res.status(201).json({
         message:"Order Approved"
     })
@@ -27,13 +22,8 @@ const approval = asyncHandler(async (req,res)=>{
 
 const rejected = asyncHandler(async (req,res)=>{
     const order = await OrderModel.findOne({ productId: req.params.productId});
-    order.updateOne(
-        {
-            $set:{
-                status: "Rejected"
-            }
-        }
-    )
+    order.status = "Rejected"
+    order.save()
     res.status(201).json({
         message:"Order Rejected"
     })
