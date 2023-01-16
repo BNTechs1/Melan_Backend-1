@@ -98,7 +98,7 @@ const approval = asyncHandler(async (req,res)=>{
 });
 
 const rejected = asyncHandler(async (req,res)=>{
-    const order = await OrderModel.findOne({ productId: req.params.productId});
+    const order = await OrderModel.findOne({ orderId: req.params.orderId});
     order.status = "Rejected"
     order.save()
     res.status(201).json({
