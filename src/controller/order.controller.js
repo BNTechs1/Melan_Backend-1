@@ -10,7 +10,84 @@ const getOrders = asyncHandler(async (req, res) => {
     }
     res.status(200).send(result)
 }) 
+const approvedPast = asyncHandler(async (req,res)=>{
+    const order = await OrderModel.find();
+    let result;
+   order.map((booked)=>{
+    const currentDate = new Date(Date.now())
+    const bookedEndDate = new Date(booked.endDate)
+    if( bookedEndDate.getTime() < currentDate.getTime()){
+        result = booked
+    }
+    
+ })
+    res.status(201).json({
+        message:"Orders Approved and completed", 
+        result
+    })
+});
+const approvedOrders = asyncHandler(async (req,res)=>{
+    const order = await OrderModel.find();
+    let result;
+   order.map((booked)=>{
+    if(booked.status = "Approved"){
+        result = booked
+    }
+    
+ })
+    res.status(201).json({
+        message:"Approved Orders", 
+        result
+    })
+});
 
+const rejectedOrders = asyncHandler(async (req,res)=>{
+    const order = await OrderModel.find();
+    let result;
+   order.map((booked)=>{
+    if(booked.status = "rejected"){
+        result = booked
+    }
+    
+ })
+    res.status(201).json({
+        message:"Rejected Orders", 
+        result
+    })
+});
+
+const activeOrders = asyncHandler(async (req,res)=>{
+    const order = await OrderModel.find();
+    let result;
+   order.map((booked)=>{
+    const currentDate = new Date(Date.now())
+    const bookedEndDate = new Date(booked.endDate)
+    if(bookedEndDate.getTime() > currentDate.getTime()){
+        result = booked
+    }
+    
+ })
+    res.status(201).json({
+        message:"Active Orders", 
+        result
+    })
+});
+const scheduledOrders = asyncHandler(async (req,res)=>{
+    const order = await OrderModel.find();
+    let result;
+   order.map((booked)=>{
+    const currentDate = new Date(Date.now())
+    const bookedStartDate = new Date(booked.startDate)
+    if(bookedStartDate.getTime() > currentDate.getTime()){
+        result = booked
+    }
+    
+ })
+    res.status(201).json({
+        message:"Scheduled Orders", 
+        result
+    })
+});
 const approval = asyncHandler(async (req,res)=>{
     const order = await OrderModel.findOne({ orderId: req.params.orderId});
     order.status = "Approved"
@@ -109,5 +186,10 @@ module.exports = {
     orderProduct,
     getOrders, 
     approval, 
-    rejected
+    rejected, 
+    approvedPast,
+    rejectedOrders,
+    activeOrders, 
+    scheduledOrders, 
+    approvedOrders
 }
