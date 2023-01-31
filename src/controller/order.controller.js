@@ -16,7 +16,7 @@ const approvedPast = asyncHandler(async (req,res)=>{
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedEndDate = new Date(booked.endDate)
-    if( bookedEndDate.getTime() < currentDate.getTime() && booked.status == "Approved"){
+    if( bookedEndDate.getTime() < currentDate.getTime() && booked.status === "Approved"){
         result.push(booked)
     }
     
@@ -30,7 +30,7 @@ const approvedOrders = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
     let result = [];
    order.map((booked)=>{
-    if(booked.status = "Approved"){
+    if(booked.status === "Approved"){
         result.push(booked)
     }
     
@@ -46,7 +46,7 @@ const rejectedOrders = asyncHandler(async (req,res)=>{
     let result = [];
     console.log(order)
    order.map((booked)=>{
-    if(booked.status = "rejected"){
+    if(booked.status === "rejected"){
         result.push(booked)
     }
     
@@ -117,7 +117,7 @@ const pendingOrders = asyncHandler(async (req,res)=>{
     let pending = []
     const order = await OrderModel.find().then((result)=>{
         result.map((order) =>{
-            if(order.status = "pending"){
+            if(order.status === "pending"){
                 pending.push(order)
             } 
         })
