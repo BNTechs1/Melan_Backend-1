@@ -8,6 +8,7 @@ router.post("/register", checkSchema(authSchema.authSchema),authController.regis
 router.post("/login", authController.login);
 router.post("/checkauth", authorize, authController.authcheck);
 router.get("/user-profile/:id", authorize, authController.userProfile);
+router.get("/get", authorize, authController.users);
 
 
 module.exports = router;

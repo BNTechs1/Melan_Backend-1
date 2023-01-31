@@ -101,10 +101,19 @@ const userProfile = asyncHandler(async(req,res,next)=>{
       })
     }
 })
+});
+
+const users = asyncHandler(async(req, res)=>{
+  const users = userSchema.find();
+  const result = {
+    data: users
+  }
+  res.status(200).send(result)
 })
 module.exports = {
     register,
     login,
     userProfile,
-    authcheck
+    authcheck, 
+    users
 }
