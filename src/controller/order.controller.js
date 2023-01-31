@@ -44,6 +44,7 @@ const approvedOrders = asyncHandler(async (req,res)=>{
 const rejectedOrders = asyncHandler(async (req,res)=>{
     const order = await OrderModel.find();
     let result = [];
+    console.log(order)
    order.map((booked)=>{
     if(booked.status = "rejected"){
         result.push(booked)
@@ -62,7 +63,7 @@ const activeOrders = asyncHandler(async (req,res)=>{
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedEndDate = new Date(booked.endDate)
-    if(bookedEndDate.getTime() > currentDate.getTime()){
+    if(bookedEndDate.getTime() > currentDate.getTime() && bookedStartDate.getTime <= currentDate.getTime() && booked.status === "Approved"){
         result.push(booked);
     }
     
@@ -78,7 +79,7 @@ const scheduledOrders = asyncHandler(async (req,res)=>{
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedStartDate = new Date(booked.startDate)
-    if(bookedStartDate.getTime() > currentDate.getTime()){
+    if(bookedStartDate.getTime() > currentDate.getTime() && booked.status === "Approved" ){
         result.push(booked)
     }
     
@@ -90,6 +91,11 @@ const scheduledOrders = asyncHandler(async (req,res)=>{
 });
 const approval = asyncHandler(async (req,res)=>{
     const order = await OrderModel.findOne({ orderId: req.params.orderId});
+    const currentDate = new Date(Date.now())
+    const bookedStartDate = new Date(order.startDate)
+    if( bookedStartDate.getTime() < currentDate.getTime()){
+        return res.status(400).send("Order Startdate has passed")
+    }
     order.status = "Approved"
     order.save()
     res.status(201).json({
@@ -110,11 +116,9 @@ const pendingOrders = asyncHandler(async (req,res)=>{
     let pending = []
     const order = await OrderModel.find().then((result)=>{
         result.map((order) =>{
-            if(order.status = "Pending"){
+            if(order.status = "pending"){
                 pending.push(order)
-            } else {
-                return "No Pending Orders"
-            }
+            } 
         })
     
     });

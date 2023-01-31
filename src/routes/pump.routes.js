@@ -113,7 +113,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
      
     res.status(201).json({
       message: "Product updated successfully!",
-      GeneratorUpdated: {
+      PumpUpdated: {
         pumpType:result.pumpType,
             motorCapacity:result.motorCapacity,
             pumpBrand:result.pumpBrand,

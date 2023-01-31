@@ -7,7 +7,7 @@ const GensetSchema = mongoose.Schema({
         type:String
     },
     gensetPartNumber:{
-        type:Number
+        type:String
     },
     name: {
         type: String
