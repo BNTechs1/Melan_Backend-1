@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator')
 const asyncHandler = require("express-async-handler");
 const { response } = require('express')
 const {v4 : uuidv4} = require('uuid')
+const userModel = require('../models/user.model')
 
 const register = asyncHandler(async(req,res)=>{
     const errors = validationResult(req)
@@ -104,7 +105,7 @@ const userProfile = asyncHandler(async(req,res,next)=>{
 });
 
 const users = asyncHandler(async(req, res)=>{
-  const users = userSchema.find();
+  const users = userModel.find();
   const result = {
     data: users
   }
