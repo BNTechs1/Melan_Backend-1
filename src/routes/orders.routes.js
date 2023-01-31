@@ -8,6 +8,7 @@ router.get("/get", auth,orderController.getOrders);
 router.get("/pastapproved", auth,orderController.approvedPast);
 router.get("/rejectedOrders", auth,orderController.rejectedOrders);
 router.get("/activeOrders", auth,orderController.activeOrders);
+router.get("/pendingOrders",orderController.pendingOrders);
 router.get("/scheduledOrders", auth,orderController.scheduledOrders);
 router.get("/approvedOrders", auth, orderController.approvedOrders)
 router.put("/approve/:orderId", auth, orderController.approval);

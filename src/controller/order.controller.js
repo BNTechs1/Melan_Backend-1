@@ -105,6 +105,24 @@ const rejected = asyncHandler(async (req,res)=>{
         message:"Order Rejected"
     })
 });
+
+const pendingOrders = asyncHandler(async (req,res)=>{
+    let pending = []
+    const order = await OrderModel.find().then((result)=>{
+        result.map((order) =>{
+            if(order.status = "Pending"){
+                pending.push(order)
+            } else {
+                return "No Pending Orders"
+            }
+        })
+    
+    });
+    res.status(201).json({
+        message:"Pending Orders",
+        data: pending
+    })
+});
 //user mke reservation for the product
 const orderProduct = asyncHandler(async (req, res) => {
     const { productId, startDate, endDate, quantity } = req.body;
@@ -191,5 +209,7 @@ module.exports = {
     rejectedOrders,
     activeOrders, 
     scheduledOrders, 
-    approvedOrders
+    approvedOrders, 
+    pendingOrders 
+
 }
