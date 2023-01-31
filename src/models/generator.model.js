@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Generatorschema = mongoose.Schema({
-    proudctId:{
+    productId:{
         type:String
     },
     generatorType:{
