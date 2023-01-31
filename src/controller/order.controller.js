@@ -63,7 +63,8 @@ const activeOrders = asyncHandler(async (req,res)=>{
    order.map((booked)=>{
     const currentDate = new Date(Date.now())
     const bookedEndDate = new Date(booked.endDate)
-    if(bookedEndDate.getTime() > currentDate.getTime() && bookedStartDate.getTime <= currentDate.getTime() && booked.status === "Approved"){
+    const bookedStartDate = new Date(booked.startDate)
+    if(bookedEndDate.getTime() >= currentDate.getTime() && bookedStartDate.getTime() <= currentDate.getTime() && booked.status === "Approved"){
         result.push(booked);
     }
     
