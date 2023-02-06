@@ -105,12 +105,14 @@ const userProfile = asyncHandler(async(req,res,next)=>{
 });
 
 const users = asyncHandler(async(req, res)=>{
-  const users = userModel.find();
-  const result = {
-    data: users
-  }
-  res.status(200).send(result)
+  const users = await UserModel.find();
+    const resut =  {
+        data: users
+    }
+    res.status(200).send(resut)
 })
+
+
 module.exports = {
     register,
     login,

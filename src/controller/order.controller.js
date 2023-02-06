@@ -46,7 +46,7 @@ const rejectedOrders = asyncHandler(async (req,res)=>{
     let result = [];
     console.log(order)
    order.map((booked)=>{
-    if(booked.status === "rejected"){
+    if(booked.status === "Rejected"){
         result.push(booked)
     }
     
