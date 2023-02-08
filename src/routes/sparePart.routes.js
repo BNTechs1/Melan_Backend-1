@@ -86,7 +86,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
         urls.push(newPath)
         // fs.unLinkSync(path)
     }
-    let sparePart = await sparePartModel.findOne({ productId: req.params.id });
+    let sparePart = await SparePartModel.findOne({ productId: req.params.id });
     sparePart.updateOne(
         {
             $set: {
