@@ -36,7 +36,7 @@ const getContacts = asyncHandler(async(req,res)=>{
     res.status(200).send(resut)
 });
 
-const getContact= asyncHandler(async(req,res)=>{
+const getContact = asyncHandler(async(req,res)=>{
     const contact = await ContactModel.findOne({contactId:req.params.id});
     const resut =  {
         data: contact
