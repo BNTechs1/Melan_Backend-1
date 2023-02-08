@@ -27,7 +27,9 @@ const genset = require("./src/routes/genset.routes")
 const sparePart = require("./src/routes/sparePart.routes")
 const product = require("./src/routes/product.routes")
 const rent = require("./src/routes/productrent.routes")
+const contact = require("./src/routes/contact.routes")
 const order = require("./src/routes/orders.routes")
+
 // Add Node Features
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -54,6 +56,8 @@ app.use("/api/sparePart", sparePart)
 app.use("/api/product", product)
 app.use("/api/rent", rent)
 app.use("/api/order", order)
+app.use("/api/contact", contact)
+
 
 // Add Middleware
 app.use(errorMiddleware);
