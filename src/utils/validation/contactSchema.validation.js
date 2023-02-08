@@ -4,7 +4,7 @@ const contactSchema = {
         notEmpty: true,
         errorMessage: "Full Names is required"
     },
-    emaiil: {
+    email: {
         notEmpty: true,
         errorMessage: "Email is required"
     },

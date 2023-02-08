@@ -21,7 +21,7 @@ const register = asyncHandler(async(req,res)=>{
             userName: req.body.userName,
             email: req.body.email,
             password: hash,
-            phoneNumber:req.body.phoenNumber
+            phoneNumber:req.body.phoneNumber
           })
           user
             .save()
