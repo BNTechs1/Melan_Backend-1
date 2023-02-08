@@ -12,7 +12,7 @@ const ContactSchema = mongoose.Schema({
     phoneNumber:{
 
     },
-    messgae:{
+    message:{
         type:String
     }, 
     
