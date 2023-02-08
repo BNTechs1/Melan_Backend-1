@@ -123,13 +123,13 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
             price:result.price,
             files:urls,
             searchKeyWord: result.pumpType + result.capacity + result.pumpBrand + result.engineBrand + result.alterantorBrand + result.name + result.price, 
-    })
-  }).catch(err => {
+    }).catch(err => {
     console.log(err),
       res.status(500).json({
         error: err
       });
   })
+});
 
 router.get("/get", PumpController.getPumps);
 router.get("/show/:id", PumpController.getPump);

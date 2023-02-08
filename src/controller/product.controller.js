@@ -59,19 +59,20 @@ const overView = asyncHandler(async(req,res)=>{
        order.map((booked)=>{
             const currentDate = new Date(Date.now())
             const bookedEndDate = new Date(booked.endDate)
-            if(bookedEndDate.getTime() > currentDate.getTime()){
+            const bookedStartDate = new Date(booked.startDate)
+
+            if(bookedStartDate.getTime() < currentDate.getTime() && bookedEndDate.getTime() > currentDate.getTime() && booked.status === "Approved"){
                 result.push(booked);
                 
             }
         });
         active = result.length
-        console.log(active)
     }); 
 
     const rejectedOrders = await orderModel.find().then((order)=>{
          let result = [];
        order.map((booked)=>{
-        if(booked.status = "rejected"){
+        if(booked.status === "Rejected"){
             result.push(booked)
         }
         
@@ -104,7 +105,7 @@ const overView = asyncHandler(async(req,res)=>{
         }
         
      })
-        totalApproved = result.length
+        completedOrders = result.length
     });
         
      const pendingOrders = await orderModel.find().then((order)=>{
@@ -135,7 +136,7 @@ const overView = asyncHandler(async(req,res)=>{
             newOrder: newOrder,
             active: active,
             upcoming: upcoming,
-            totalApproved: totalApproved,
+            completedOrders: completedOrders,
             rejected : rejected
         },
         content : {
