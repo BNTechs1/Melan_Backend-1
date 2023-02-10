@@ -110,25 +110,9 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
     },
     {},{new:true}
     )
-    res.status(200).json({
+    res.status(201).json({
       message: "Product created successfully!",
-      pumpType:result.pumpType,
-            motorCapacity:result.motorCapacity,
-            pumpBrand:result.pumpBrand,
-            pumpModel:result.pumpModel,
-            flowRate:result.flowRate,
-            head:result.head,
-            name:result.name,
-            description:result.description,
-            price:result.price,
-            files:urls,
-            searchKeyWord: result.pumpType + result.capacity + result.pumpBrand + result.engineBrand + result.alterantorBrand + result.name + result.price, 
-    }).catch(err => {
-    console.log(err),
-      res.status(500).json({
-        error: err
-      });
-  })
+    })
 });
 
 router.get("/get", PumpController.getPumps);

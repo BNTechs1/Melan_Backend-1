@@ -106,17 +106,6 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
 
     res.status(201).json({
         message: "Product updated successfully!",
-        sparePartUpdated: {
-            sparePartType: req.body.sparePartType,
-            subType: req.body.subType,
-            sparePartBrand: req.body.sparePartBrand,
-            sparePartNumber: req.body.sparePartNumber,
-            name: req.body.name,
-            description: req.body.description,
-            price: req.body.price,
-            files: urls,
-            searchKeyWord: req.body.sparePartType + req.body.sparePartBrand + req.body.subType + sparePartNumber + req.body.name + req.body.price,
-        }
     })
 })
 
