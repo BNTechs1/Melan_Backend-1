@@ -110,7 +110,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
     },
     {},{new:true}
     )
-    res.status(201).json({
+    res.status(200).json({
       message: "Product created successfully!",
       pumpType:result.pumpType,
             motorCapacity:result.motorCapacity,
