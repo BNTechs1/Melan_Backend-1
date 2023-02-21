@@ -54,17 +54,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
 
         res.status(201).json({
             message: "Product created successfully!",
-            GensetCreated: {
-                productId: productId,
-                gensetBrand: req.body.gensetBrand,
-                gensetPartNumber: req.body.gensetPartNumber,
-                name: req.body.name,
-                description: req.body.description,
-                price: req.body.price,
-                files: urls,
-                searchKeyWord: result.GensetType + result.capacity + result.GensetBrand + result.engineBrand + result.alterantorBrand + result.name + result.price,
-                files: result.files
-            }
+           
         })
     }).catch(err => {
         console.log(err),
@@ -94,7 +84,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
                 description: req.body.description,
                 price: req.body.price,
                 files: urls,
-                searchKeyWord: req.body.GensetType + req.body.capacity + req.body.GensetBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
+                searchKeyWord: req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price,
             }
         },
         {},{ new: true }
@@ -102,15 +92,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
 
     res.status(201).json({
         message: "Product updated successfully!",
-        GensetUpdated: {
-            gensetBrand: req.body.gensetBrand,
-            gensetPartNumber: req.body.gensetPartNumber,
-            name: req.body.name,
-            description: req.body.description,
-            price: req.body.price,
-            files: urls,
-            searchKeyWord: req.body.GensetType + req.body.capacity + req.body.GensetBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
-        }
+        
     })
 })
 

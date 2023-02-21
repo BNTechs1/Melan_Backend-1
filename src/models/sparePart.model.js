@@ -27,6 +27,9 @@ const SparePartSchema = mongoose.Schema({
     files: {
         type: Array
     },
+    searchKeyWord: {
+        type: String 
+    }
     
  });
 module.exports = mongoose.model('SparePart',  SparePartSchema);

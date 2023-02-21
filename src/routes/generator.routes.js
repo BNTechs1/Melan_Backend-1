@@ -57,20 +57,6 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(GeneratorSche
 
       res.status(201).json({
         message: "Product created successfully!",
-        GeneratorCreated: {
-            productId: productId,
-            generatorType:result.generatorType,
-            capacity:result.capacity,
-            generatorBrand:result.generatorBrand,
-            engineBrand:result.engineBrand,
-            alterantorBrand:result.alterantorBrand,
-            name:result.name,
-            description:result.description,
-            price:result.price,
-            files:urls,
-            searchKeyWord: result.generatorType + result.capacity + result.generatorBrand + result.engineBrand + result.alterantorBrand + result.name + result.price,
-          files: result.files
-        }
       })
     }).catch(err => {
       console.log(err),
@@ -111,18 +97,6 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(Generator
      
     res.status(201).json({
       message: "Product updated successfully!",
-      GeneratorUpdated: {
-        generatorType:req.body.generatorType,
-        capacity:req.body.capacity,
-        generatorBrand:req.body.generatorBrand,
-        engineBrand:req.body.engineBrand,
-        alterantorBrand:req.body.alterantorBrand,
-        name:req.body.name,
-        description:req.body.description,
-        price:req.body.price,
-        files:urls,
-        searchKeyWord: req.body.generatorType + req.body.capacity + req.body.generatorBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
-      }
     })
   })
 

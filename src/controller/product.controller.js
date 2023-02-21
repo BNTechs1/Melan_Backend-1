@@ -9,7 +9,8 @@ const orderModel = require("../models/order.model");
 const heroModel = require("../models/hero.model")
 const aboutModel = require("../models/about.model")
 const serviceModel = require("../models/service.model")
-const projectModel = require("../models/portfolio.model")
+const projectModel = require("../models/portfolio.model");
+const { clearConfigCache } = require("prettier");
 const overView = asyncHandler(async(req,res)=>{
     let products = [];
     let generatorQuantity;
@@ -187,9 +188,52 @@ const getProducts = asyncHandler(async(req,res)=>{
     res.status(200).send(resut)
 });
 
+const searchProducts = asyncHandler(async(req,res)=>{
+    let key = req.body.search
+    console.log(typeof(key));
+    let products = [];
+    const generator = await GeneratorModel.find(  {"searchKeyWord": {$regex : key}}  ).then((result)=>{
+        result.map((product)=>{
+            product.from = "generator"
+            products.push(product);
+        })
+    });
+    const pump = await PumpModel.find( {"searchKeyWord": {$regex : key}}  ).then((result)=>{
+        result.map((product)=>{
+            product.from = "pump"
+            products.push(product);
+        })
+    });
+    const sparePart = await SparePartModel.find(  {"searchKeyWord": {$regex : key}}  ).then((result)=>{
+        result.map((product)=>{
+            product.from = "sparepart"
+            products.push(product);
+        })
+    });;
+    const genset = await GensetModel.find(  {"searchKeyWord": {$regex : key}}  ).then((result)=>{
+        result.map((product)=>{
+            product.from = "genset"
+            products.push(product);
+        })
+    });;
+    const ats = await AtsModel.find(  {"searchKeyWord": {$regex : key}}  ).then((result)=>{
+        result.map((product)=>{
+            product.from = "ats"
+            products.push(product);
+        })
+    });;
+
+    const resut =  { 
+        data: products 
+    }
+    // console.log(resut)
+    res.status(200).send(resut)
+});
+
 module.exports = {
     getProducts,
-    overView
+    overView, 
+    searchProducts
 }
 
 

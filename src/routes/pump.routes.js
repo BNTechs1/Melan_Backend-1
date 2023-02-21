@@ -51,27 +51,13 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PumpScheama.p
       description:req.body.description,
       price:req.body.price,
       files:urls,
-      searchKeyWord: req.body.pumpType + req.body.capacity + req.body.pumpBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
+      searchKeyWord: req.body.pumpType + req.body.motorCapacity + req.body.pumpBrand + req.body.pumpModel + req.body.flowRate + req.body.head + req.body.name + req.body.price,
     });
 
     Pump.save().then(result => {
 
       res.status(201).json({
         message: "Product created successfully!",
-        pumpCreated: {
-            productId: productId,
-            pumpType:result.pumpType,
-            motorCapacity:result.motorCapacity,
-            pumpBrand:result.pumpBrand,
-            pumpModel:result.pumpModel,
-            flowRate:result.flowRate,
-            head:result.head,
-            name:result.name,
-            description:result.description,
-            price:result.price,
-            files:urls,
-            searchKeyWord: result.pumpType + result.capacity + result.pumpBrand + result.engineBrand + result.alterantorBrand + result.name + result.price,
-        }
       })
     }).catch(err => {
       console.log(err),
@@ -105,7 +91,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
       description:req.body.description,
       price:req.body.price,
       files:urls,
-      searchKeyWord: req.body.pumpType + req.body.capacity + req.body.pumpBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
+      searchKeyWord: req.body.pumpType + req.body.motorCapacity + req.body.pumpBrand + req.body.pumpModel + req.body.flowRate + req.body.head + req.body.name + req.body.price,
       }
     },
     {},{new:true}

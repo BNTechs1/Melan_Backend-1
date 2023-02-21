@@ -54,16 +54,6 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(AtsScheama.at
 
       res.status(201).json({
         message: "Product created successfully!",
-        AtsCreated: {
-            productId: productId,
-      atsRange:req.body.atsRange,
-      amp:req.body.amp,
-      name:req.body.name,
-      description:req.body.description,
-      price:req.body.price,
-      files:urls,
-      searchKeyWord: req.body.atsRange + req.body.amp + req.body.name + req.body.price,
-        }
       })
     }).catch(err => {
       console.log(err),
