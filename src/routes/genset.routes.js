@@ -39,6 +39,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
         // fs.unLinkSync(path)
     }
     const productId = uuidv4()
+    const key = req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price
     const Genset = new GensetModel({
         productId: productId,
         gensetBrand: req.body.gensetBrand,
@@ -47,7 +48,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
         description: req.body.description,
         price: req.body.price,
         files: urls,
-        searchKeyWord: req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price,
+        searchKeyWord: key.toLowerCase()
     });
 
     Genset.save().then(result => {
@@ -75,6 +76,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
         // fs.unLinkSync(path)
     }
     let Genset = await GensetModel.findOne({ productId: req.params.id });
+    const key = req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price
     Genset.updateOne(
         {
             $set: {
@@ -84,7 +86,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
                 description: req.body.description,
                 price: req.body.price,
                 files: urls,
-                searchKeyWord: req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price,
+                searchKeyWord: key.toLowerCase()
             }
         },
         {},{ new: true }

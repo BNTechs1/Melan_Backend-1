@@ -39,6 +39,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(AtsScheama.at
       // fs.unLinkSync(path)
     }
     const productId = uuidv4()
+    const key = req.body.atsRange + req.body.amp + req.body.name + req.body.price
     const Ats = new AtsModel({
       productId: productId,
       atsRange:req.body.atsRange,
@@ -47,7 +48,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(AtsScheama.at
       description:req.body.description,
       price:req.body.price,
       files:urls,
-      searchKeyWord: req.body.atsRange + req.body.amp + req.body.name + req.body.price,
+      searchKeyWord:  key.toLowerCase()
     });
 
     Ats.save().then(result => {
@@ -75,6 +76,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
     }
   let Ats = await AtsModel.findOne({productId: req.params.id});
   // console.log("Ats is here")
+  const key = req.body.atsRange + req.body.amp + req.body.name + req.body.price
   Ats.updateOne(
     {
       $set:{
@@ -84,7 +86,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
         description:req.body.description,
         price:req.body.price,
         files:urls,
-        searchKeyWord: req.body.atsRange + req.body.amp + req.body.name + req.body.price,
+        searchKeyWord: key.toLowerCase()
       },
 
     },
@@ -94,16 +96,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(AtsScheam
      
     res.status(201).json({
       message: "Product updated successfully!",
-      AtsUpdated: {
-        AtsType:res.AtsType,
-        atsRange:res.atsRange,
-        amp:res.amp,
-        name:res.name,
-        description:res.description,
-        price:res.price,
-        files:urls,
-        searchKeyWord: res.atsRange + res.amp + res.name + res.price,
-      }
+      
     })
   })
 router.get("/get", AtsController.getAtss);

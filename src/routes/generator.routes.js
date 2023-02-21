@@ -39,6 +39,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(GeneratorSche
       // fs.unLinkSync(path)
     }
     const productId = uuidv4()
+    const key = req.body.generatorType + req.body.capacity + req.body.generatorBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price
     const Generator = new GeneratorModel({
       productId: productId,
       generatorType:req.body.generatorType,
@@ -50,7 +51,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(GeneratorSche
       description:req.body.description,
       price:req.body.price,
       files:urls,
-      searchKeyWord: req.body.generatorType + req.body.capacity + req.body.generatorBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
+      searchKeyWord: key.toLowerCase()
     });
 
     Generator.save().then(result => {
@@ -77,6 +78,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(Generator
       // fs.unLinkSync(path)
     }
   let generator = await GeneratorModel.findOne({productId: req.params.id});
+  const key = req.body.generatorType + req.body.capacity + req.body.generatorBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price
   generator.updateOne(
     {
       $set:{
@@ -89,7 +91,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(Generator
         description:req.body.description,
         price:req.body.price,
         files:urls,
-        searchKeyWord: req.body.generatorType + req.body.capacity + req.body.generatorBrand + req.body.engineBrand + req.body.alterantorBrand + req.body.name + req.body.price,
+        searchKeyWord: key.toLowerCase()
       }
     },
     {},{new:true}

@@ -189,7 +189,7 @@ const getProducts = asyncHandler(async(req,res)=>{
 });
 
 const searchProducts = asyncHandler(async(req,res)=>{
-    let key = req.body.search
+    let key = req.body.search.toLowerCase()
     console.log(typeof(key));
     let products = [];
     const generator = await GeneratorModel.find(  {"searchKeyWord": {$regex : key}}  ).then((result)=>{

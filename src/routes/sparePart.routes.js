@@ -39,6 +39,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(SparePartSch
         // fs.unLinkSync(path)
     }
     const productId = uuidv4()
+    const key = req.body.sparePartType + req.body.subType + req.body.sparePartBrand + req.body.sparePartPartNumber + req.body.name + req.body.price
     const sparePart = new SparePartModel({
         productId: productId,
         sparePartType: req.body.sparePartType,
@@ -49,7 +50,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(SparePartSch
         description: req.body.description,
         price: req.body.price,
         files: urls,
-        searchKeyWord: req.body.sparePartType + req.body.subType + req.body.sparePartBrand + req.body.sparePartPartNumber + req.body.name + req.body.price,
+        searchKeyWord: key.toLowerCase()
     });
 
     sparePart.save().then(result => {
@@ -77,6 +78,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
         // fs.unLinkSync(path)
     }
     let sparePart = await SparePartModel.findOne({ productId: req.params.id });
+    const key = req.body.sparePartType + req.body.subType + req.body.sparePartBrand + req.body.sparePartPartNumber + req.body.name + req.body.price
     sparePart.updateOne(
         {
             $set: {
@@ -88,7 +90,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(SparePart
                 description: req.body.description,
                 price: req.body.price,
                 files: urls,
-                searchKeyWord: req.body.sparePartType + req.body.subType + req.body.sparePartBrand + req.body.sparePartPartNumber + req.body.name + req.body.price,
+                searchKeyWord: key.toLowerCase()
             }
         },
         {}, { new: true }

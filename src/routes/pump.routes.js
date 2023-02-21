@@ -39,6 +39,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PumpScheama.p
       // fs.unLinkSync(path)
     }
     const productId = uuidv4()
+    const key = req.body.pumpType + req.body.motorCapacity + req.body.pumpBrand + req.body.pumpModel + req.body.flowRate + req.body.head + req.body.name + req.body.price
     const Pump = new PumpModel({
       productId: productId,
       pumpType:req.body.pumpType,
@@ -51,7 +52,7 @@ router.post("/create", auth, upload.array("files", 10),checkSchema(PumpScheama.p
       description:req.body.description,
       price:req.body.price,
       files:urls,
-      searchKeyWord: req.body.pumpType + req.body.motorCapacity + req.body.pumpBrand + req.body.pumpModel + req.body.flowRate + req.body.head + req.body.name + req.body.price,
+      searchKeyWord: key.toLowerCase()
     });
 
     Pump.save().then(result => {
@@ -78,6 +79,8 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
       // fs.unLinkSync(path)
     }
   let pump = await PumpModel.findOne({productId: req.params.id});
+  const key = req.body.pumpType + req.body.motorCapacity + req.body.pumpBrand + req.body.pumpModel + req.body.flowRate + req.body.head + req.body.name + req.body.price
+
   pump.updateOne(
     {
       $set:{
@@ -91,7 +94,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(PumpSchea
       description:req.body.description,
       price:req.body.price,
       files:urls,
-      searchKeyWord: req.body.pumpType + req.body.motorCapacity + req.body.pumpBrand + req.body.pumpModel + req.body.flowRate + req.body.head + req.body.name + req.body.price,
+      searchKeyWord: key.toLowerCase()
       }
     },
     {},{new:true}
