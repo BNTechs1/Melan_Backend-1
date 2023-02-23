@@ -242,7 +242,7 @@ const filter = asyncHandler(async (req, res) => {
 
     let filterField = {
         ats: ['amp'],
-        generetor: ['generatorType', 'generatorBrand', 'capacity', 'engineBrand'],
+        generator: ['generatorType', 'generatorBrand', 'capacity', 'engineBrand'],
         pump: ['pumpType', 'pumpBrand'],
         genset: ['gensetBrand'], 
       }
