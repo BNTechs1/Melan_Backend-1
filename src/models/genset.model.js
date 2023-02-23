@@ -15,8 +15,9 @@ const GensetSchema = mongoose.Schema({
     description: {
         type: String,
     },
-    price:{
-        type:Number
+     price:{
+        type:String, 
+        default: "view Price"
     },
     files: {
         type: Array

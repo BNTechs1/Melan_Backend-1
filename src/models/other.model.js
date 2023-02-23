@@ -10,7 +10,8 @@ const OtherSchema = mongoose.Schema({
         type:String
     },
     price: {
-        type:Number
+        type:String, 
+        default: "View Price"
     },
     files: {
         type: Array

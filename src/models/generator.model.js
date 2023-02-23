@@ -25,7 +25,8 @@ const Generatorschema = mongoose.Schema({
         type:String
     },
     price:{
-        type:Number
+        type:String, 
+        default: "view Price"
     },
     files: {
         type: Array

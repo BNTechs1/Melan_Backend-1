@@ -22,7 +22,8 @@ const rentProductchema = mongoose.Schema({
         type:String,
     },
     price:{
-        type:Number,
+        type:String, 
+        default: "View Price"
     },
     quantity:{
         type:Number

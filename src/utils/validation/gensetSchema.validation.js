@@ -12,10 +12,7 @@ const gensetSchema = {
         notEmpty: true,
         errorMessage: "name is required"
     },
-    price: {
-        notEmpty: true,
-        errorMessage: "price is required"
-    },
+    
     description: {
         notEmpty: true,
         errorMessage: "Description is required"
