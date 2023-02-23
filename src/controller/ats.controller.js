@@ -5,7 +5,7 @@ const getAtss = asyncHandler(async(req,res)=>{
      if(Object.keys(query).length == 0){
          const Ats = await AtsModel.find();
          const resut =  {
-             data: Ats
+             data: Ats.reverse()
          }
          res.status(200).send(resut)
  
@@ -14,7 +14,7 @@ const getAtss = asyncHandler(async(req,res)=>{
          const filter = req.query;
          const Ats =  await AtsModel.find(filter);
          const resut =  {
-             data: Ats
+             data: Ats.reverse()
          }
          res.status(200).send(resut)
      }    

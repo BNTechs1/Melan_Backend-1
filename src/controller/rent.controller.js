@@ -5,7 +5,7 @@ const getProducts = asyncHandler(async(req,res)=>{
     const products = await RentProductModel.find();
     console.log("products",products)
     const resut =  {
-        data: products
+        data: products.reverse()
     }
     res.status(200).send(resut)
 });

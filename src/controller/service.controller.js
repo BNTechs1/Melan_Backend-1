@@ -53,7 +53,7 @@ const updateService = asyncHandler(async(req,res)=>{
 const getServices = asyncHandler(async(req,res)=>{
     const service = await ServiceModel.find();
     const resut =  {
-        data: service
+        data: service.reverse()
     }
     res.status(200).send(resut)
 });

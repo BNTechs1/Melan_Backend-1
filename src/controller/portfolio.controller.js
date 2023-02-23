@@ -53,7 +53,7 @@ const updatePortfolio = asyncHandler(async(req,res)=>{
 const getPortfolios = asyncHandler(async(req,res)=>{
     const portfolio = await PortfolioModel.find();
     const resut =  {
-        data: portfolio
+        data: portfolio.reverse()
     }
     res.status(200).send(resut)
 });

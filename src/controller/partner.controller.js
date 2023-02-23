@@ -3,7 +3,7 @@ const PartnerModel = require("../models/partner.model");
 const getPartners = asyncHandler(async(req,res)=>{
     const partner = await PartnerModel.find();
     const resut =  {
-        data: partner
+        data: partner.reverse()
     }
     res.status(200).send(resut)
 });

@@ -5,7 +5,7 @@ const getGensets = asyncHandler(async(req,res)=>{
      if(Object.keys(query).length == 0){
          const genset = await GensetModel.find();
          const resut =  {
-             data: genset
+             data: genset.reverse()
          }
          res.status(200).send(resut)
  
@@ -14,7 +14,7 @@ const getGensets = asyncHandler(async(req,res)=>{
          const filter = req.query;
          const genset =  await GensetModel.find(filter);
          const resut =  {
-             data: genset
+             data: genset.reverse()
          }
          res.status(200).send(resut)
      }    

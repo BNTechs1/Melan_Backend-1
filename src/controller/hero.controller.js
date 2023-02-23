@@ -3,7 +3,7 @@ const HeroModel = require("../models/hero.model");
 const getHeros = asyncHandler(async(req,res)=>{
     const hero = await HeroModel.find();
     const resut =  {
-        data: hero
+        data: hero.reverse()
     }
     res.status(200).send(resut)
 });

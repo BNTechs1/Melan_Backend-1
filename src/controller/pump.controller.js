@@ -5,7 +5,7 @@ const getPumps = asyncHandler(async(req,res)=>{
      if(Object.keys(query).length == 0){
          const pump = await PumpModel.find();
          const resut =  {
-             data: pump
+             data: pump.reverse()
          }
          res.status(200).send(resut)
  
@@ -13,9 +13,12 @@ const getPumps = asyncHandler(async(req,res)=>{
      }  else {
          const filter = req.query;
          const pump =  await PumpModel.find(filter);
+
          const resut =  {
-             data: pump
+             data: pump.reverse()
+            
          }
+       
          res.status(200).send(resut)
      }    
 });

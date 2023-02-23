@@ -5,7 +5,7 @@ const getOthers = asyncHandler(async(req,res)=>{
      if(Object.keys(query).length == 0){
          const other = await otherModel.find();
          const resut =  {
-             data: other
+             data: other.reverse()
          }
          res.status(200).send(resut)
  
@@ -14,7 +14,7 @@ const getOthers = asyncHandler(async(req,res)=>{
          const filter = req.query;
          const other =  await otherModel.find(filter);
          const resut =  {
-             data: other
+             data: other.reverse()
          }
          res.status(200).send(resut)
      }    

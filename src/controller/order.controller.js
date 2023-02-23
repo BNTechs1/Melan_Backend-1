@@ -6,7 +6,7 @@ const RentProductModel = require("../models/productrent.model")
 const getOrders = asyncHandler(async (req, res) => {
     const orders = await OrderModel.find();
     let result = {
-        data: orders
+        data: orders.reverse()
     }
     res.status(200).send(result)
 }) 

@@ -6,7 +6,7 @@ const getGenerators = asyncHandler(async(req,res)=>{
     if(Object.keys(query).length == 0){
         const generator = await GeneratorModel.find();
         const resut =  {
-            data: generator
+            data: generator.reverse()
         }
         res.status(200).send(resut)
 
@@ -15,7 +15,7 @@ const getGenerators = asyncHandler(async(req,res)=>{
         const filter = req.query;
         const generator =  await GeneratorModel.find(filter);
         const resut =  {
-            data: generator
+            data: generator.reverse()
         }
         res.status(200).send(resut)
     }    

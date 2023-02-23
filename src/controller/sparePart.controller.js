@@ -5,7 +5,7 @@ const getspareParts = asyncHandler(async(req,res)=>{
     if(Object.keys(query).length == 0){
         const sparePart = await sparePartModel.find();
         const resut =  {
-            data: sparePart
+            data: sparePart.reverse()
         }
         res.status(200).send(resut)
 
@@ -14,7 +14,7 @@ const getspareParts = asyncHandler(async(req,res)=>{
         const filter = req.query;
         const sparePart =  await sparePartModel.find(filter);
         const resut =  {
-            data: sparePart
+            data: sparePart.reverse()
         }
         res.status(200).send(resut)
     }    

@@ -182,7 +182,7 @@ const getProducts = asyncHandler(async (req, res) => {
     });;
 
     const resut = {
-        data: products
+        data: products.reverse()
     }
     // console.log(resut)
     res.status(200).send(resut)
@@ -223,7 +223,7 @@ const searchProducts = asyncHandler(async (req, res) => {
     });;
 
     const resut = {
-        data: products
+        data: products.reverse()
     }
     // console.log(resut)
     res.status(200).send(resut)
