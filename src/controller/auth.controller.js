@@ -73,7 +73,7 @@ const login = asyncHandler(async(req,res)=>{
       )
       res.status(200).json({
         accessToken: jwtToken,
-        expiresIn: 4800,
+        expiresIn: 14400,
         userId: getUser.userId,
       })
     
