@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const GensetSchema = mongoose.Schema({
+const ControllerSchema = mongoose.Schema({
     proudctId:{
         type:String
     },
-    gensetBrand:{
+    controllerBrand:{
         type:String
     },
-    gensetPartNumber:{
+    controllerModel:{
         type:String
     },
     name: {
@@ -24,4 +24,4 @@ const GensetSchema = mongoose.Schema({
     },
     
  });
-module.exports = mongoose.model('Genset', GensetSchema);
+module.exports = mongoose.model('Controller', ControllerSchema);

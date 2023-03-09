@@ -1,13 +1,13 @@
 const express = require("express");
-const GensetController = require("../controller/genset.controller");
+const controllerController = require("../controller/controller.controller");
 const router = express.Router();
-const GensetScheama = require("../utils/validation/gensetSchema.validation");
+const controllerScheama = require("../utils/validation/controllerSchema.validation");
 const { checkSchema } = require('express-validator');
 const auth = require("../middleware/auth.middleware")
 const multer = require('multer')
 const DIR = './public/'
 const cloudinary = require("../config/cloudinary")
-const GensetModel = require("../models/genset.model");
+const controllerModel = require("../models/controller.model");
 const { v4: uuidv4 } = require('uuid')
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,7 +27,7 @@ var upload = multer({
     }
 })
 // checkSchema(productSchema.productSchema),
-router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheama.gensetSchema), async (req, res, next) => {
+router.post("/create", auth, upload.array("files", 10), checkSchema(controllerScheama.controllerSchema), async (req, res, next) => {
     const uploader = async (path) => await cloudinary.uploads(path, "Images")
 
     const files = req.files;
@@ -39,11 +39,11 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
         // fs.unLinkSync(path)
     }
     const productId = uuidv4()
-    const key = req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price
-    const Genset = new GensetModel({
+    const key = req.body.controllerBrand + req.body.controllerModel + req.body.name + req.body.price
+    const controller = new controllerModel({
         productId: productId,
-        gensetBrand: req.body.gensetBrand,
-        gensetPartNumber: req.body.gensetPartNumber,
+        controllerBrand: req.body.controllerBrand,
+        controllerModel: req.body.controllerModel,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
@@ -51,7 +51,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
         searchKeyWord: key.toLowerCase()
     });
 
-    Genset.save().then(result => {
+    controller.save().then(result => {
 
         res.status(201).json({
             message: "Product created successfully!",
@@ -65,7 +65,7 @@ router.post("/create", auth, upload.array("files", 10), checkSchema(GensetScheam
     })
 });
 
-router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetScheama.gensetSchema), async (req, res) => {
+router.put("/update/:id", auth, upload.array("files", 10), checkSchema(controllerScheama.controllerSchema), async (req, res) => {
     const uploader = async (path) => await cloudinary.uploads(path)
     const files = req.files;
     const urls = []
@@ -75,13 +75,13 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
         urls.push(newPath)
         // fs.unLinkSync(path)
     }
-    let Genset = await GensetModel.findOne({ productId: req.params.id });
-    const key = req.body.gensetBrand + req.body.gensetPartNumber + req.body.name + req.body.price
-    Genset.updateOne(
+    let controller = await controllerModel.findOne({ productId: req.params.id });
+    const key = req.body.controllerBrand + req.body.controllerModel + req.body.name + req.body.price
+    controller.updateOne(
         {
             $set: {
-                gensetBrand: req.body.gensetBrand,
-                gensetPartNumber: req.body.gensetPartNumber,
+                controllerBrand: req.body.controllerBrand,
+                controllerModel: req.body.controllerModel,
                 name: req.body.name,
                 description: req.body.description,
                 price: req.body.price,
@@ -98,7 +98,7 @@ router.put("/update/:id", auth, upload.array("files", 10), checkSchema(GensetSch
     })
 })
 
-router.get("/get", GensetController.getGensets);
-router.get("/show/:id", GensetController.getGenset);
-router.delete("/delete/:id", auth,  GensetController.deleteGenset);
+router.get("/get", controllerController.getControllers);
+router.get("/show/:id", controllerController.getController);
+router.delete("/delete/:id", auth,  controllerController.deleteController);
 module.exports = router;

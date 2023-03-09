@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const GeneratorModel = require("../models/generator.model");
 const PumpModel = require("../models/pump.model");
 const SparePartModel = require("../models/sparePart.model");
-const GensetModel = require("../models/genset.model");
+const ControllerModel = require("../models/controller.model");
 const AtsModel = require("../models/ats.model");
 const orderModel = require("../models/order.model");
 const heroModel = require("../models/hero.model")
@@ -17,7 +17,7 @@ const overView = asyncHandler(async (req, res) => {
     let pumpQuantity
     let atsQuantity
     let sparePartQuantity
-    let gensetQuantity
+    let controllerQuantity
     let newOrder
     let active
     let upcoming
@@ -49,8 +49,8 @@ const overView = asyncHandler(async (req, res) => {
     const sparePart = await SparePartModel.find().then((result) => {
         sparePartQuantity = result.length
     });;
-    const genset = await GensetModel.find().then((result) => {
-        gensetQuantity = result.length
+    const controller = await ControllerModel.find().then((result) => {
+        controllerQuantity = result.length
     });;
     const ats = await AtsModel.find().then((result) => {
         atsQuantity = result.length
@@ -129,7 +129,7 @@ const overView = asyncHandler(async (req, res) => {
         product: {
             generator: generatorQuantity,
             pump: pumpQuantity,
-            genset: gensetQuantity,
+            controller: controllerQuantity,
             sparePart: sparePartQuantity,
             ats: atsQuantity
         },
@@ -170,7 +170,7 @@ const getProducts = asyncHandler(async (req, res) => {
             products.push(product);
         })
     });;
-    const genset = await GensetModel.find().then((result) => {
+    const controller = await ControllerModel.find().then((result) => {
         result.map((product) => {
             products.push(product);
         })
@@ -209,9 +209,9 @@ const searchProducts = asyncHandler(async (req, res) => {
             products.push(product);
         })
     });;
-    const genset = await GensetModel.find({ "searchKeyWord": { $regex: key } }).then((result) => {
+    const controller = await ControllerModel.find({ "searchKeyWord": { $regex: key } }).then((result) => {
         result.map((product) => {
-            product.from = "genset"
+            product.from = "controller"
             products.push(product);
         })
     });;
@@ -237,14 +237,14 @@ const filter = asyncHandler(async (req, res) => {
     if( route === "ats") data = await AtsModel.find();
     else if(route === "generator") data = await GeneratorModel.find();
     else if(route === "pump") data = await PumpModel.find();
-    else if (route === "genset") data = await GensetModel.find();
+    else if (route === "controller") data = await ControllerModel.find();
     else return res.send("Not available").status(404)
 
     let filterField = {
         ats: ['amp'],
         generator: ['generatorType', 'generatorBrand', 'capacity', 'engineBrand'],
         pump: ['pumpType', 'pumpBrand'],
-        genset: ['gensetBrand'], 
+        controller: ['controllerBrand'], 
       }
 
     let key = {}

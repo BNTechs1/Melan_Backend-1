@@ -1,10 +1,10 @@
 // const pumpModel = require("../../models/pump.model");
-const gensetSchema = {    
-    gensetBrand: {
+const controllerSchema = {    
+    controllerBrand: {
         notEmpty: true,
         errorMessage: "gensetBrand is required"
     },
-    gensetPartNumber: {
+    controllerModel: {
         notEmpty: true,
         errorMessage: "gensetPartNumber is required"
     },
@@ -21,7 +21,7 @@ const gensetSchema = {
 }
 
 module.exports = {
-    gensetSchema
+    controllerSchema
 }
 
    
