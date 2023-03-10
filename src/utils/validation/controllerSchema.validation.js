@@ -2,11 +2,11 @@
 const controllerSchema = {    
     controllerBrand: {
         notEmpty: true,
-        errorMessage: "gensetBrand is required"
+        errorMessage: "controller brand is required"
     },
     controllerModel: {
         notEmpty: true,
-        errorMessage: "gensetPartNumber is required"
+        errorMessage: "controller model is required"
     },
     name: {
         notEmpty: true,
