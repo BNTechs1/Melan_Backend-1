@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const ControllerModel = require("../models/generator.model");
+const GeneratorModel = require("../models/generator.model");
 const getGenerators = asyncHandler(async(req,res)=>{
 //    console.log("req",req)
    let query = req.query
