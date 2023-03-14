@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const ControllerSchema = mongoose.Schema({
-    proudctId:{
+    productId:{
         type:String
     },
     controllerBrand:{
