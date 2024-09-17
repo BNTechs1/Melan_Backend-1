@@ -30,7 +30,6 @@ jobs:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
-        port: ${{ secrets.VPS_PORT }}  # Default SSH port is 22; you can omit this if you're using the default.
         script: |
           cd /app/
           git pull
