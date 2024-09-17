@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Use the latest LTS version of Node.js
+
+    - name: Install dependencies
+      run: npm install --no-optional
+
+    - name: Install sshpass
+      run: sudo apt-get install -y sshpass
+
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        password: ${{ secrets.VPS_PASSWORD }}
+        port: ${{ secrets.VPS_PORT }}  # Default SSH port is 22; you can omit this if you're using the default.
+        script: |
+          cd /app/
+          git pull
+          npm install
+          pm2 restart ecosystem.config.js
+          sudo systemctl restart nginx
+
+    - name: Debug npm logs on failure
+      if: failure()
+      run: cat /home/runner/.npm/_logs/*.log
