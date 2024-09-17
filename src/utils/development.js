@@ -13,7 +13,6 @@ function printConsole(
   { printLocation = "Print Location not Added" } = {},
   { bgColor = "", textColor = "", underline = false } = {}
 ) {
-  if (ENV === "development") {
     const finalPrint = getUnderline(
       getTextColor(getBgColor(data, bgColor), textColor),
       underline
@@ -24,7 +23,6 @@ function printConsole(
       printLocation.gray
     );
   }
-}
 
 function getBgColor(data, bgColor) {
   switch (bgColor) {
