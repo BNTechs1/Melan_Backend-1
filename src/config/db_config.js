@@ -41,5 +41,5 @@ const connectToDB = async () => {
     process.exit(1);
   }
 };
-
+//latest update for maintaining the connection
 module.exports = connectToDB;
